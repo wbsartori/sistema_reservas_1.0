@@ -1,0 +1,17 @@
+{
+    "name": "wbsartori/pure-php-base-project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Wesley Sartóri",
+            "email": "wbsartori@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*"
+    }
+}
