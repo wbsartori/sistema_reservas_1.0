@@ -52,9 +52,8 @@ class EquipamentController
 
     public function update(): void
     {
-        $delete = $this->equipament->update('id', $_POST['id']);
-        $registers = $this->equipament->getAll();
-        View::make()->template('equipaments/index', $registers);
+        $this->equipament->update($_POST, intval($_POST['id']));
+        View::make()->template('equipaments/index');
     }
 
     public function edit(): void
