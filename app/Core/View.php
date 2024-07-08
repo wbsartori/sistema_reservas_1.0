@@ -12,7 +12,7 @@ class View
         return new self();
     }
 
-    public function template(string $name, mixed $registers = null): void
+    public function template(string $name, mixed $registers = null, array $message = null): void
     {
         $directory = dirname(__DIR__, 2)
             . DIRECTORY_SEPARATOR

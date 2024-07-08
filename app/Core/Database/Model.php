@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App\Core\Database;
 
-use App\Core\Database\PDOSqliteConnection;
 use Exception;
 use PDO;
 
@@ -35,12 +34,14 @@ abstract class Model
         return $statement->fetch();
     }
 
-    public function insert($field, $value)
+    public function insert(array $attributes)
     {
-        $sql = 'insert into ' . $this->table . $field . ' = ?';
+        $keys = implode(',', array_keys($attributes));
+        $values = implode(',', array_keys($attributes));
+        $values = ':'.str_replace(',', ', :', $keys);
+        $sql = 'insert into ' . $this->table .' (' .$keys . ') values (' . $values . ')';
         $statement = $this->connection->prepare($sql);
-        $statement->bindValue(1, $value);
-        $statement->execute();
+        $statement->execute($attributes);
         return $statement->rowCount();
     }
 

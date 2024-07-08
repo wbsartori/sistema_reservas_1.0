@@ -1,3 +1,3 @@
-./vendor
-./.idea
-./database/database.sqlite
+vendor/
+.idea/
+database/database.sqlite

@@ -29,16 +29,16 @@ $_SESSION['MSG_RETORNO'] = '';
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($equipamentos as $item) { ?>
+            <?php foreach ($registers as $item) { ?>
                 <tr>
-                    <td><?php echo $item['id']?></td>
-                    <td><?php echo $item['descricao']?></td>
-                    <td><?php echo $item['equipamento_marca_descricao']?></td>
-                    <td><?php echo $item['equipamento_tipo_descricao']?></td>
-                    <td><?php echo $item['modelo']?></td>
-                    <td><?php echo $item['numero_serie']?></td>
+                    <td><?php echo $item->id?></td>
+                    <td><?php echo $item->descricao?></td>
+                    <td><?php echo $item->equipamento_tipo?></td>
+                    <td><?php echo $item->equipamento_marca?></td>
+                    <td><?php echo $item->modelo ?></td>
+                    <td><?php echo $item->numero_serie?></td>
                     <td>
-                        <?php if($item['status'] == 'A') { ?>
+                        <?php if($item->status == 'on') { ?>
                             <div class="form-group">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
@@ -56,7 +56,12 @@ $_SESSION['MSG_RETORNO'] = '';
                     </td>
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="Basic example">
-                            <a href="edit.php?id='<?= $item['id'];?>'" class="btn btn-warning" ><i class="bi bi-pencil-square"></i></a>
+                            <form action="/equipaments/edit" method="post">
+                                <input type="hidden" class="btn-check" name="id" id="id" value="<?php echo $registers->id ?? ''; ?>">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </form>
 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<?= $item['id'];?>">
                                 <i class="bi bi-trash"></i>
