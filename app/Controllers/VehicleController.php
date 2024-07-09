@@ -10,7 +10,6 @@ use App\Models\Vehicle;
 
 class VehicleController
 {
-
     private Vehicle $vehicle;
 
     public function __construct()
