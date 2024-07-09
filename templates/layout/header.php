@@ -40,18 +40,9 @@
                         Reservas
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/equipaments">Reservar equipamentos</a></li>
-                        <li><a class="dropdown-item" href="/rooms">Reservar salas</a></li>
-                        <li><a class="dropdown-item" href="/vehicles">Reservar veículos</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Configurações
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/users/permission">Permissões</a></li>
+                        <li><a class="dropdown-item" href="/reservations/equipament">Reservar equipamentos</a></li>
+                        <li><a class="dropdown-item" href="/reservations/room">Reservar salas</a></li>
+                        <li><a class="dropdown-item" href="/reservations/vehicle">Reservar veículos</a></li>
                     </ul>
                 </li>
             </ul>

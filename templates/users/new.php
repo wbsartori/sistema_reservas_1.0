@@ -2,14 +2,13 @@
 <div class="container">
     <h4 class="mt-5">Cadastro/Usuario</h4>
     <hr class="bg-dark">
-    <div class="row mt-5">
+    <div class="row">
         <div class="col-md-12">
             <form method="post" action="/users/create">
                 <?php include('_form.php'); ?>
                 <hr class="bg-dark">
-                <button class="btn btn-success" type="submit">Salvar</button>
-                <a href="/users" class="btn btn-danger">Cancelar</a>
-                <hr>
+                <button class="btn btn-success mb-5" type="submit">Salvar</button>
+                <a href="/users" class="btn btn-danger mb-5">Cancelar</a>
             </form>
         </div>
     </div>

@@ -10,7 +10,6 @@ use App\Models\User;
 
 class UserController
 {
-
     private User $user;
 
     public function __construct()
@@ -31,16 +30,14 @@ class UserController
 
     public function create(): void
     {
-        $delete = $this->user->insert('id', $_POST['id']);
-        $registers = $this->user->getAll();
-        View::make()->template('users/index', $registers);
+        $this->user->insert($_POST);
+        View::make()->redirect('/users');
     }
 
     public function update(): void
     {
-        $delete = $this->user->update('id', $_POST['id']);
-        $registers = $this->user->getAll();
-        View::make()->template('users/index', $registers);
+        $delete = $this->user->update($_POST);
+        View::make()->redirect('/users');
     }
 
     public function edit(): void
@@ -51,8 +48,7 @@ class UserController
 
     public function delete(): void
     {
-        $delete = $this->user->delete('id', $_POST['id']);
-        $registers = $this->user->getAll();
-        View::make()->template('users/index', $registers);
+        $this->user->delete('id', $_POST['id']);
+        View::make()->redirect('/users');
     }
 }

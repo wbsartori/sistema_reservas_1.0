@@ -1,12 +1,8 @@
-<?php \App\Core\View::make()->load('layout/header');?>
-
 <?php
-if(!empty($_SESSION['MSG_RETORNO'])){
-    echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
-    echo $_SESSION['MSG_RETORNO'];
-    echo '</div>';
-}
-$_SESSION['MSG_RETORNO'] = '';
+
+\App\Core\View::make()->load('layout/header');
+
+\App\Core\View::make()->alertMessage();
 ?>
 
 <h4 class="mt-5">Usuários</h4>
@@ -22,21 +18,19 @@ $_SESSION['MSG_RETORNO'] = '';
                 <th scope="col">Nome</th>
                 <th scope="col">Ramal</th>
                 <th scope="col">E-mail</th>
-                <th scope="col">Perfil</th>
                 <th scope="col">Status</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuarios as $item) { ?>
+                <?php foreach ($registers as $item) { ?>
                     <tr>
-                        <td><?php echo $item['id'] ?></td>
-                        <td><?php echo $item['nome'] ?></td>
-                        <td><?php echo $item['ramal'] ?></td>
-                        <td><?php echo $item['email_corporativo'] ?></td>
-                        <td><?php echo $item['usuario_perfil_descricao'] ?></td>
+                        <td><?php echo $item->id ?></td>
+                        <td><?php echo $item->nome_completo ?></td>
+                        <td><?php echo $item->email ?></td>
+                        <td><?php echo $item->contato ?></td>
                         <td>
-                            <?php if($item['status'] == 'A') { ?>
+                            <?php if($item->status == 'on') { ?>
                                 <div class="form-group">
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                         <input type="radio" class="btn-check" name="status_ativo" id="status_ativo" autocomplete="off" checked>
@@ -54,16 +48,19 @@ $_SESSION['MSG_RETORNO'] = '';
                         </td>
                         <td>
                             <div class="btn-group float-end" role="group" aria-label="Basic example">
-                                <a href="edit.php?id='<?= $item['id'];?>'" class="btn btn-warning" ><i class="bi bi-pencil-square"></i></a>
-                               
-                                <?php if($_SESSION['users']['users']['deleta'] === 'S') { ?>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<?= $item['id'];?>">
+                                <form action="/users/edit" method="post">
+                                    <input type="hidden" class="btn-check" name="id" id="id" value="<?php echo $item->id ?? ''; ?>">
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </form>
+
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<?= $item->id;?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
-                                <?php } ?>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="confimarDelete<?= $item['id'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="confimarDelete<?= $item->id;?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header bg-danger">
@@ -71,16 +68,16 @@ $_SESSION['MSG_RETORNO'] = '';
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p><?php echo MSG_CONFIRMAR_DELETE ?></p>
+                                                <p><?php echo \App\Global\Messages::DELETE_CONFIRMATION_MESSAGE ?></p>
                                                 <label for="veiculo_tipo_id">Id:</label>
-                                                <input type="text" class="form-control" id="id" name="id" value="<?php echo $item['id'];?>" disabled>
+                                                <input type="text" class="form-control" id="id" name="id" value="<?php echo $item->id;?>" disabled>
                                                 <hr>
                                                 <label for="nome">Nome:</label>
-                                                <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $item['nome'];?>" disabled>
+                                                <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $item->nome_completo; ?>" disabled>
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="action/excluir.php" method="post">
-                                                    <input type="hidden" name="id" id="id" value="<?php echo $item['id']?>">
+                                                <form action="/users/delete" method="post">
+                                                    <input type="hidden" name="id" id="id" value="<?php echo $item->id?>">
                                                     <button type="submit" class="btn btn-warning">Confirmar<i class="bi bi-pencil-square"></i></button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                 </form>

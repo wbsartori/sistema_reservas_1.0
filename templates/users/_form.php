@@ -1,24 +1,19 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" class="form-control" maxlength="100" id="nome" name="nome"
-                   value="<?= $usuario['nome'] ?? ''; ?>">
+            <label for="nome_completo">Nome completo:</label>
+            <input type="text" class="form-control" maxlength="100" id="nome_completo" name="nome_completo"
+                   value="<?= $registers->nome_completo ?? ''; ?>">
         </div>
         <div class="form-group">
-            <label for="telefone">Telefone:</label>
-            <input type="text" class="form-control" maxlength="100" id="telefone" name="telefone"
-                   value="<?= $usuario['telefone'] ?? ''; ?>">
+            <label for="contato">Telefone:</label>
+            <input type="text" class="form-control" maxlength="100" id="contato" name="contato"
+                   value="<?= $registers->contato ?? ''; ?>">
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
             <input type="email" class="form-control" maxlength="100" id="email" name="email"
-                   value="<?= $usuario['email'] ?? ''; ?>">
-        </div>
-        <div class="form-group">
-            <label for="email_corporativo">E-mail Corporativo:</label>
-            <input type="email" class="form-control" maxlength="100" id="email_corporativo" name="email_corporativo"
-                   value="<?= $usuario['email_corporativo'] ?? ''; ?>">
+                   value="<?= $registers->email ?? ''; ?>">
         </div>
     </div>
 </div>
@@ -30,7 +25,7 @@
         <div class="form-group">
             <label for="usuario">Usuario:</label>
             <input type="text" class="form-control" maxlength="50" id="usuario" name="usuario"
-                   value="<?= $usuario['users'] ?? ''; ?>">
+                   value="<?= $registers->usuario ?? ''; ?>">
         </div>
     </div>
 </div>
@@ -41,7 +36,7 @@
                 <label for="senha">Senha:</label>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" maxlength="16" id="senha" name="senha"
-                           value="<?= $usuario['senha'] ?? ''; ?>">
+                           value="<?= $registers->senha ?? ''; ?>">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-eye-fill" id="bi-eye-fill"
                                                                         onclick="mostrarSenha()"></i></span>
                 </div>
@@ -50,30 +45,18 @@
     </div>
 </div>
 <div class="row">
-    <div class="row mt-2">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="confirmar_senha">Confirmar Senha:</label>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" maxlength="50" id="confirmar_senha"
-                           name="confirmar_senha" value="<?= $usuario['senha'] ?? ''; ?>">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-eye-fill"
-                                                                        id="bi-eye-fill-confirmar-senha"
-                                                                        onclick="mostrarSenha()"></i></span>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-3">
         <div class="form-group">
-            <label for="id_perfil">Perfil:</label>
-            <select class="form-select" id="id_perfil" name="id_perfil" aria-label="Default select example">
-                <option value=""> ---</option>
-                <option value="admin">Administrador</option>
-                <option value="user">Usuário</option>
+            <label for="permissao">Tipo de permissão:</label>
+            <select class="form-select" id="permissao" name="permissao" aria-label="Default select example">
+                <?php if($registers->permissao !== '') { ?>
+                    <option value="<?= $registers->permissao ?>"><?= ucfirst($registers->permissao) ?></option>
+                    <option value=""> ---</option>
+                <?php } else {?>
+                    <option value=""> ---</option>
+                <?php }?>
+                <option value="administrador">Administrador</option>
+                <option value="usuario">Usuário</option>
             </select>
         </div>
     </div>
@@ -84,7 +67,7 @@
         <label class="mt-3" for="id_perfil">Status:</label>
         <label for="status"></label>
         <div class="form-check form-switch">
-            <?php if (isset($usuario['status']) && $usuario['status'] == 'A') { ?>
+            <?php if (isset($registers->status) && $registers->status == 'on') { ?>
                 <input class="form-check-input" type="checkbox" id="status" name="status"
                        onclick="ativarDesativarUsuario()" checked>
                 <label class="form-check-label" for="status" id="label_status_ativo">Desativar Usuário</label>
