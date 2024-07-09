@@ -45,17 +45,14 @@ abstract class Model
         return $statement->rowCount();
     }
 
-    public function update(array $attributes, int $id)
+    public function update(array $attributes): int
     {
-        unset($attributes['id']);
         $sets = '';
         foreach ($attributes as $key => $value) {
-            $sets .= $key . '=' . $value . ',';
+            $sets .= $key . "=:" . $key . ",";
         }
-        if (str_ends_with($sets, ',')) {
-            $sets = substr($sets, 0, strlen($sets) - 1);
-        }
-        $sql = 'update ' . $this->table . ' ' . $sets . ' where id = ' . $id;
+        $sql = 'update ' . $this->table . " set " . rtrim($sets, ',') . " where id = :id";
+ 
         $statement = $this->connection->prepare($sql);
         $statement->execute($attributes);
         return $statement->rowCount();

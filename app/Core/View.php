@@ -45,4 +45,23 @@ class View
         }
         include $directory;
     }
+
+    /**
+     * @param string $page
+     * @return void
+     */
+    public function redirect(string $page = '/'): void
+    {
+        header('location:' . $page);
+    }
+
+    public function alertMessage(): void
+    {
+        if(!empty($_SESSION['sucess'])){
+            echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
+            echo $_SESSION['success'];
+            echo '</div>';
+        }
+        $_SESSION['error'] = '';
+    }
 }

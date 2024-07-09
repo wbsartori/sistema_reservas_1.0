@@ -1,6 +1,11 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
+            <label for="data_aquisicao">ID:</label>
+            <input type="text" class="form-control" id="_id" name="_id"
+                   value="<?= $registers->id ?? ''; ?>" disabled>
+        </div>
+        <div class="form-group">
             <label for="data_aquisicao">Data Aquisição:</label>
             <input type="date" class="form-control" id="data_aquisicao" name="data_aquisicao"
                    value="<?= $registers->data_aquisicao ?? ''; ?>">
@@ -27,18 +32,25 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="equipamento_tipo">Tipo de equipamento</label>
-                    <input type="text" class="form-control" id="equipamento_tipo" name="equipamento_tipo" maxlength="100"
+                    <input type="text" class="form-control" id="equipamento_tipo" name="equipamento_tipo"
+                           maxlength="100"
                            value="<?= $registers->equipamento_tipo ?? ''; ?>">
                 </div>
                 <div class="form-group">
                     <label for="equipamento_marca">Marca de Equipamento</label>
-                    <input type="text" class="form-control" id="equipamento_marca" name="equipamento_marca" maxlength="100"
+                    <input type="text" class="form-control" id="equipamento_marca" name="equipamento_marca"
+                           maxlength="100"
                            value="<?= $registers->equipamento_marca ?? ''; ?>">
                 </div>
                 <div class="form-group">
                     <label for="modelo">Modelo do Equipamento: </label>
                     <input type="text" class="form-control" id="modelo" name="modelo"
                            value="<?= $registers->modelo ?? ''; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="numero_serie">Número de serie: </label>
+                    <input type="text" class="form-control" id="numero_serie" name="numero_serie"
+                           value="<?= $registers->numero_serie ?? ''; ?>">
                 </div>
             </div>
         </div>

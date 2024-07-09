@@ -1,12 +1,8 @@
-<?php \App\Core\View::make()->load('layout/header');?>
-
 <?php
-if(!empty($_SESSION['MSG_RETORNO'])){
-    echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
-    echo $_SESSION['MSG_RETORNO'];
-    echo '</div>';
-}
-$_SESSION['MSG_RETORNO'] = '';
+
+\App\Core\View::make()->load('layout/header');
+
+\App\Core\View::make()->alertMessage();
 ?>
 
 <h4 class="mt-5">Equipamentos</h4>
@@ -19,24 +15,24 @@ $_SESSION['MSG_RETORNO'] = '';
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Data Aquisição</th>
                 <th scope="col">Descrição</th>
-                <th scope="col">Marca</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Marca</th>
                 <th scope="col">Modelo</th>
                 <th scope="col">N&ordm Série</th>
-                <th scope="col"></th>
+                <th scope="col">Status</th>
+                <th scope="col">Ações</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($registers as $item) { ?>
                 <tr>
-                    <td><?php echo $item->id?></td>
-                    <td><?php echo $item->descricao?></td>
-                    <td><?php echo $item->equipamento_tipo?></td>
-                    <td><?php echo $item->equipamento_marca?></td>
-                    <td><?php echo $item->modelo ?></td>
-                    <td><?php echo $item->numero_serie?></td>
+                    <td><?= $item->id?></td>
+                    <td><?= $item->descricao?></td>
+                    <td><?= $item->equipamento_tipo?></td>
+                    <td><?= $item->equipamento_marca?></td>
+                    <td><?= $item->modelo?></td>
+                    <td><?= $item->numero_serie?></td>
                     <td>
                         <?php if($item->status == 'on') { ?>
                             <div class="form-group">
@@ -57,35 +53,34 @@ $_SESSION['MSG_RETORNO'] = '';
                     <td>
                         <div class="btn-group float-end" role="group" aria-label="Basic example">
                             <form action="/equipaments/edit" method="post">
-                                <input type="hidden" class="btn-check" name="id" id="id" value="<?php echo $registers->id ?? ''; ?>">
+                                <input type="hidden" class="btn-check" name="id" id="id" value="<?php echo $item->id ?? ''; ?>">
                                 <button type="submit" class="btn btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </form>
 
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<?= $item['id'];?>">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confimarDelete<?= $item->id;?>">
                                 <i class="bi bi-trash"></i>
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="confimarDelete<?= $item['id'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="confimarDelete<?= $item->id;?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header bg-danger">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Excluir</h5>
+                                            <h5 class="modal-title" id="staticBackdropLabel"><?= \App\Global\Messages::DELETE_CONFIRMATION_MESSAGE?></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p><?php echo 'MSG_CONFIRMAR_DELETE' ?></p>
                                             <label for="di">Id:</label>
-                                            <input type="text" class="form-control" id="id" name="id" value="<?php echo $item['id'];?>" disabled>
+                                            <input type="text" class="form-control" id="id" name="id" value="<?php echo $item->id;?>" disabled>
                                             <hr>
                                             <label for="veiculo_tipo_descricao">Descricao:</label>
-                                            <input type="text" class="form-control" id="descricao" name="descricao" value="<?php echo $item['descricao'];?>" disabled>
+                                            <input type="text" class="form-control" id="descricao" name="descricao" value="<?php echo $item->descricao;?>" disabled>
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="action/excluir.php" method="post">
-                                                <input type="hidden" name="id" id="id" value="<?php echo $item['id']?>">
+                                            <form action="/equipaments/delete" method="post">
+                                                <input type="hidden" name="id" id="id" value="<?php echo $item->id?>">
                                                 <button type="submit" class="btn btn-warning">Confirmar<i class="bi bi-pencil-square"></i></button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                             </form>
