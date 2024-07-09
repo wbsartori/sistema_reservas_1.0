@@ -79,7 +79,7 @@
         <label class="mt-3" for="id_perfil">Status:</label>
         <label for="status"></label>
         <div class="form-check form-switch">
-            <?php if (isset($registers->status) && $registers->status == 'A') { ?>
+            <?php if (isset($registers->status) && $registers->status == 'on') { ?>
                 <input class="form-check-input" type="checkbox" id="status" name="status"
                        onclick="ativarDesativarUsuario()" checked>
                 <label class="form-check-label" for="status" id="label_status_ativo">Desativar Usuário</label>

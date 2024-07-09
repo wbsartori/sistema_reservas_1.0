@@ -6,5 +6,5 @@ use App\Core\Database\Model;
 
 class Vehicle extends Model
 {
-    protected string $table = 'vehicles';
+    protected string $table = 'veiculos';
 }

@@ -6,5 +6,5 @@ use App\Core\Database\Model;
 
 class UserPermission extends Model
 {
-    protected string $table = 'user_permissions';
+    protected string $table = 'usuarios_permissoes';
 }

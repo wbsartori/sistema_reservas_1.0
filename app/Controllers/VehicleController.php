@@ -30,28 +30,25 @@ class VehicleController
 
     public function create(): void
     {
-        $delete = $this->vehicle->insert('id', $_POST['id']);
-        $registers = $this->vehicle->getAll();
-        View::make()->template('vehicles/index', $registers);
+        $this->vehicle->insert($_POST);
+        View::make()->redirect('/vehicles');
     }
 
     public function update(): void
     {
-        $delete = $this->vehicle->update('id', $_POST['id']);
-        $registers = $this->vehicle->getAll();
-        View::make()->template('vehicles/index', $registers);
+        $this->vehicle->update($_POST);
+        View::make()->redirect('/vehicles');
     }
 
     public function edit(): void
     {
         $registers = $this->vehicle->findById($_POST['id']);
-        View::make()->template('vehicles/editar', $registers);
+        View::make()->template('vehicles/edit', $registers);
     }
 
     public function delete(): void
     {
-        $delete = $this->vehicle->delete('id', $_POST['id']);
-        $registers = $this->vehicle->getAll();
-        View::make()->template('vehicles/index', $registers);
+        $this->vehicle->delete('id', $_POST['id']);
+        View::make()->redirect('/vehicles');
     }
 }

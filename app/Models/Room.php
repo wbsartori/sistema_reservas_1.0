@@ -6,5 +6,5 @@ use App\Core\Database\Model;
 
 class Room extends Model
 {
-    protected string $table = 'rooms';
+    protected string $table = 'salas';
 }

@@ -8,8 +8,8 @@
                 <input type="hidden" class="form-control" maxlength="7" id="id" name="id"
                        value="<?= $registers->id ?? ''; ?>">
                 <?php include('_form.php'); ?>
-                <button class="btn btn-success" type="submit">Salvar</button>
-                <a href="/rooms" class="btn btn-danger">Cancelar</a>
+                <button class="btn btn-success mb-5" type="submit">Salvar</button>
+                <a href="/rooms" class="btn btn-danger mb-5">Cancelar</a>
             </form>
         </div>
     </div>
