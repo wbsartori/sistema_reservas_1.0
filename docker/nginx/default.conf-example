@@ -1,3 +1,13 @@
+#Configuração para teste com arquivo index.html
+server {
+    index index.html index.php;
+    server_name localhost;
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /var/www;
+}
+
+#Configuração para PHP
 server {
     listen 80;
     index index.php;

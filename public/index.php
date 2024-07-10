@@ -1,10 +1,3 @@
 <?php
 
-use App\Core\Routes;
-use App\Core\View;
-
-try {
-    Routes::load();
-} catch (Exception $exception) {
-    echo $exception->getMessage();
-}
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config/bootstrap.php';
