@@ -16,7 +16,7 @@ class PDOSqliteConnection implements ConnectionInterface
     public static function connect(): PDO
     {
         try {
-            $driver = require dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'config.php';
+            $driver = require dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'config/database.php';
             $pdo = new PDO(
                 $driver['database']['dns']
                 . dirname(__DIR__, 3)
