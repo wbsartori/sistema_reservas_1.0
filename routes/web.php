@@ -38,6 +38,6 @@ return [
     '/reservations/vehicle' => ['controller' => \App\Controllers\UserController::class, 'method' => 'add'],
 
     '/login' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'index'],
-    '/login/authenticate' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'add'],
-    '/login/logout' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'add'],
+    '/login/authenticate' => ['controller' => \App\Controllers\AuthenticateController::class, 'method' => 'authenticate'],
+    '/login/logout' => ['controller' => \App\Controllers\AuthenticateController::class, 'method' => 'logout'],
 ];

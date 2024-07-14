@@ -1,7 +1,7 @@
 <?php \App\Core\View::make()->load('layout/header'); ?>
 
 <div class="container">
-    <h4 class="mt-5">Cadastro/Equipamentos</h4>
+    <h4 class="mt-5">Cadastro/Veículos</h4>
     <hr class="bg-dark">
     <div class="row">
         <div class="col-md-12">

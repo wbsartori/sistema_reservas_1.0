@@ -5,7 +5,7 @@
 \App\Core\View::make()->alertMessage();
 ?>
 
-<h4 class="mt-5">Equipamentos</h4>
+<h4 class="mt-5">Veículos</h4>
 <hr class="bg-dark">
 <a href="/vehicles/add" class="btn btn-primary">Novo</a>
 <hr class="bg-dark">

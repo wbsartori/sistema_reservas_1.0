@@ -30,6 +30,7 @@ class View
     /**
      * @param string $layout
      * @return void
+     * @throws Exception
      */
     public function load(string $layout): void
     {
@@ -55,13 +56,28 @@ class View
         header('location:' . $page);
     }
 
-    public function alertMessage(): void
-    {
-        if(!empty($_SESSION['sucess'])){
+    /**
+     * @param string|null $key
+     * @param string|null $message
+     * @return void
+     */
+    public function alertMessage(
+        string $key = null,
+        string $message = null
+    ): void {
+        if($key === 'success' && $message !== null){
+            $_SESSION[$key] = $message;
+            echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
+            echo $_SESSION[$key];
+            echo '</div>';
+        } else if(!empty($_SESSION['success'])){
             echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
             echo $_SESSION['success'];
             echo '</div>';
+        } else if(!empty($_SESSION['error'])){
+            echo '<div class="alert alert-error mt-3" id="error-alert" role="alert">';
+            echo $_SESSION['error'];
+            echo '</div>';
         }
-        $_SESSION['error'] = '';
     }
 }
