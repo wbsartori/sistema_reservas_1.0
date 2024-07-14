@@ -24,11 +24,10 @@
                     <div class="form-check form-switch">
                         <?php if (isset($registers->status) && $registers->status == 'on') { ?>
                             <input class="form-check-input" type="checkbox" id="status" name="status" checked>
-                            <label class="form-check-label" for="status" id="label_status_ativo">Desativar
-                                Usuário</label>
+                            <label class="form-check-label" for="status" id="label_status_ativo">Inativar</label>
                         <?php } else { ?>
                             <input class="form-check-input" type="checkbox" id="status" name="status">
-                            <label class="form-check-label" for="status" id="label_status_ativo">Ativar Usuário</label>
+                            <label class="form-check-label" for="status" id="label_status_ativo">Ativar</label>
                         <?php } ?>
                     </div>
                 </div>

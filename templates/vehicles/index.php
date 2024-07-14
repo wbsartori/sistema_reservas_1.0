@@ -23,7 +23,7 @@
             <?php foreach ($registers as $item) { ?>
                 <tr>
                     <td><?= $item->id ?></td>
-                    <td><?= $item->modelo ?></td>
+                    <td><?= $item->veiculo_modelo ?></td>
                     <td>
                         <?php if ($item->status == 'on') { ?>
                             <div class="form-group">
@@ -75,7 +75,7 @@
                                             <hr>
                                             <label for="modelo">Descricao:</label>
                                             <input type="text" class="form-control" id="modelo" name="modelo"
-                                                   value="<?php echo $item->modelo; ?>" disabled>
+                                                   value="<?php echo $item->veiculo_modelo; ?>" disabled>
                                         </div>
                                         <div class="modal-footer">
                                             <form action="/vehicles/delete" method="post">
