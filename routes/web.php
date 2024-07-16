@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 return [
-    '/' => ['controller' => \App\Controllers\HomeController::class, 'method' => 'index'],
+    '/' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'index'],
+    '/home' => ['controller' => \App\Controllers\HomeController::class, 'method' => 'index'],
 
     '/equipaments' => ['controller' => \App\Controllers\EquipamentController::class, 'method' => 'index'],
     '/equipaments/add' => ['controller' => \App\Controllers\EquipamentController::class, 'method' => 'add'],

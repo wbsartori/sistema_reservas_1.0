@@ -53,6 +53,21 @@ abstract class Model
         }
     }
 
+    public function findByWhere(array $where): mixed
+    {
+        try {
+            $this->connection->beginTransaction();
+            $sql = 'select * from '. $this->table . ' where id = :id';
+            $statement = $this->connection->prepare($sql);
+            #$statement->bindValue(':id', intval($id));
+            $statement->execute();
+            return $statement->fetch();
+        } catch (Throwable $exception) {
+            $this->connection->rollBack();
+            View::make()->alertMessage('error', $exception->getMessage());
+        }
+    }
+
     public function insert(array $attributes)
     {
         try {
