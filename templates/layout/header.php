@@ -46,6 +46,19 @@
                     </ul>
                 </li>
             </ul>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <?= \App\Core\Session\Session::session()->getValue('user')['name'] ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/authenticate/logout">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
         </div>
     </div>
 </nav>

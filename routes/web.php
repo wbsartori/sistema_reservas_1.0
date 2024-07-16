@@ -33,6 +33,7 @@ return [
     '/users/edit' => ['controller' => \App\Controllers\UserController::class, 'method' => 'edit'],
     '/users/delete' => ['controller' => \App\Controllers\UserController::class, 'method' => 'delete'],
 
+    '/reservations/created' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'create'],
     '/reservations/equipament' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addEquipament'],
     '/reservations/room' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addRoom'],
     '/reservations/vehicle' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addVehicle'],

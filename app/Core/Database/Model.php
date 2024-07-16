@@ -3,6 +3,7 @@
 namespace App\Core\Database;
 
 use App\Core\View;
+use DateTime;
 use Exception;
 use PDO;
 use Throwable;
@@ -55,6 +56,8 @@ abstract class Model
     public function insert(array $attributes)
     {
         try {
+            $attributes['crido_em'] = (new DateTime())->format('Y-m-d H:i:s');
+            $attributes['alterado_em'] = (new DateTime())->format('Y-m-d H:i:s');
             $this->connection->beginTransaction();
             $keys = implode(',', array_keys($attributes));
             $values = implode(',', array_keys($attributes));
@@ -73,6 +76,7 @@ abstract class Model
     public function update(array $attributes): int
     {
         try {
+            $attributes['alterado_em'] = (new DateTime())->format('Y-m-d H:i:s');
             $this->connection->beginTransaction();
             $sets = '';
             foreach ($attributes as $key => $value) {

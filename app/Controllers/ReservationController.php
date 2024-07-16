@@ -56,4 +56,13 @@ class ReservationController
         $vehicles = $this->vehicle->getAll();
         View::make()->template('reservation/vehicle', $vehicles);
     }
+
+    /**
+     * @return void
+     */
+    public function create(): void
+    {
+        (new \App\Models\Reservation())->insert($_POST);
+        View::make()->redirect();
+    }
 }
