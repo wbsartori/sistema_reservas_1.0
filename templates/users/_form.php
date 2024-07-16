@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="permissao">Tipo de permissão:</label>
             <select class="form-select" id="permissao" name="permissao" aria-label="Default select example">
-                <?php if($registers->permissao !== '') { ?>
+                <?php if($registers->permissao !== null) { ?>
                     <option value="<?= $registers->permissao ?>"><?= ucfirst($registers->permissao) ?></option>
                     <option value=""> ---</option>
                 <?php } else {?>

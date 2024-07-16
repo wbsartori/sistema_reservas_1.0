@@ -11,6 +11,11 @@
                    value="<?= $registers->ano_modelo ?? ''; ?>">
         </div>
         <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" class="form-control" id="descricao" name="descricao"
+                   value="<?= $registers->descricao ?? ''; ?>">
+        </div>
+        <div class="form-group">
             <label for="chassi">Número Chassi:</label>
             <input type="text" class="form-control" maxlength="50" id="chassi" name="chassi"
                    value="<?= $registers->chassi ?? ''; ?>">
@@ -38,9 +43,9 @@
         <div class="form-group">
             <label for="veiculo_cor">Cor:</label>
             <select class="form-select" id="veiculo_cor" name="veiculo_cor" aria-label="Default select example">
-                <?php if($registers->veiculo_cor !== '') { ?>
+                <?php if ($registers->veiculo_cor !== null) { ?>
                     <option value="<?= $registers->veiculo_cor ?>"><?= ucfirst($registers->veiculo_cor) ?></option>
-                <?php }?>
+                <?php } ?>
 
                 <option value="">---</option>
                 <option value="white">Branco</option>
@@ -74,9 +79,9 @@
                 <label for="veiculo_tipo">Tipo de Veiculo:</label>
                 <select class="form-select" id="veiculo_tipo" name="veiculo_tipo"
                         aria-label="Default select example">
-                    <?php if($registers->veiculo_tipo !== '') { ?>
+                    <?php if ($registers->veiculo_tipo !== null) { ?>
                         <option value="<?= $registers->veiculo_tipo ?>"><?= ucfirst($registers->veiculo_tipo) ?></option>
-                    <?php }?>
+                    <?php } ?>
                     <option value="">---</option>
                     <option value="automovel">Automóvel</option>
                     <option value="caminhao">Caminhão</option>
@@ -89,9 +94,9 @@
                 <label for="veiculo_combustivel">Tipo de combustivel:</label>
                 <select class="form-select" id="veiculo_combustivel" name="veiculo_combustivel"
                         aria-label="Default select example">
-                    <?php if($registers->veiculo_combustivel !== '') { ?>
+                    <?php if ($registers->veiculo_combustivel !== null) { ?>
                         <option value="<?= $registers->veiculo_combustivel ?>"><?= ucfirst($registers->veiculo_combustivel) ?></option>
-                    <?php }?>
+                    <?php } ?>
                     <option value="">---</option>
                     <option value="alcool">Alcool</option>
                     <option value="gasolina">Gasolina</option>

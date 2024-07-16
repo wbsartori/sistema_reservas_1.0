@@ -53,7 +53,7 @@ class Session
      */
     public function getValue(string $key): mixed
     {
-        return $_SESSION[$key];
+        return $_SESSION[$key] ?? null;
     }
 
     /**

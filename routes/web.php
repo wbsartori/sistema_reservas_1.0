@@ -33,9 +33,9 @@ return [
     '/users/edit' => ['controller' => \App\Controllers\UserController::class, 'method' => 'edit'],
     '/users/delete' => ['controller' => \App\Controllers\UserController::class, 'method' => 'delete'],
 
-    '/reservations/equipament' => ['controller' => \App\Controllers\UserController::class, 'method' => 'add'],
-    '/reservations/room' => ['controller' => \App\Controllers\UserController::class, 'method' => 'add'],
-    '/reservations/vehicle' => ['controller' => \App\Controllers\UserController::class, 'method' => 'add'],
+    '/reservations/equipament' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addEquipament'],
+    '/reservations/room' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addRoom'],
+    '/reservations/vehicle' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addVehicle'],
 
     '/login' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'index'],
     '/login/authenticate' => ['controller' => \App\Controllers\AuthenticateController::class, 'method' => 'authenticate'],

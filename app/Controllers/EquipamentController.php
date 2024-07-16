@@ -45,7 +45,7 @@ class EquipamentController
      */
     public function create(): void
     {
-        $this->equipament->insert($_POST);
+        (new \App\Models\Equipament)->insert($_POST);
         View::make()->redirect('/equipaments');
     }
 
