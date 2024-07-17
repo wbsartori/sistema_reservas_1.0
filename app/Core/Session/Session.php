@@ -14,7 +14,9 @@ class Session
      */
     public static function init(): Session
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         self::$session = new self();
         return self::$session;
     }
@@ -28,7 +30,7 @@ class Session
      * @param array|null $sessionData
      * @return void
      */
-    public function setKeys(array $sessionData = null): void
+    public static function setKeys(array $sessionData = null): void
     {
         if ($sessionData !== null) {
             foreach ($sessionData as $key => $value) {
@@ -42,7 +44,7 @@ class Session
      * @param string $value
      * @return void
      */
-    public function setKey(string $key, string $value): void
+    public static function setKey(string $key, string $value): void
     {
         $_SESSION[$key] = $value;
     }
@@ -51,7 +53,7 @@ class Session
      * @param string $key
      * @return mixed
      */
-    public function getValue(string $key): mixed
+    public static function getValue(string $key): mixed
     {
         return $_SESSION[$key] ?? null;
     }
@@ -59,16 +61,17 @@ class Session
     /**
      * @return array
      */
-    public function get(): array
+    public static function get(): array
     {
-        return $_SESSION;
+        return $_SESSION ?? [];
     }
 
     /**
      * @return void
      */
-    public function destroy(): void
+    public static function destroy(): void
     {
+        self::setKeys([]);
         session_destroy();
     }
 }

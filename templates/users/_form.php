@@ -47,8 +47,8 @@
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
-            <label for="permissao">Tipo de permissão:</label>
-            <select class="form-select" id="permissao" name="permissao" aria-label="Default select example">
+            <label for="perfil">Tipo de perfil:</label>
+            <select class="form-select" id="perfil" name="perfil" aria-label="Default select example">
                 <?php if($registers->permissao !== null) { ?>
                     <option value="<?= $registers->permissao ?>"><?= ucfirst($registers->permissao) ?></option>
                     <option value=""> ---</option>
@@ -61,10 +61,63 @@
         </div>
     </div>
 </div>
+<div class="row mt-3">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="perfil">Tipo de permissão:</label>
+            <p>Cadastros</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="criar_equipamento" name="criar_equipamento">
+                <label class="form-check-label" for="criar_equipamento">
+                    Equipamentos
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="criar_sala" name="criar_sala">
+                <label class="form-check-label" for="criar_sala">
+                    Salas
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="criar_usuario" name="criar_usuario">
+                <label class="form-check-label" for="criar_usuario">
+                    Usuários
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="criar_veiculo" name="criar_veiculo">
+                <label class="form-check-label" for="criar_veiculo">
+                    Veículos
+                </label>
+            </div>
+            <hr>
+            <p>Reservas</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="reservar_equipamento" name="reservar_equipamento">
+                <label class="form-check-label" for="reservar_equipamento">
+                    Reservar Equipamentos
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="reservar_sala" name="reservar_sala">
+                <label class="form-check-label" for="reservar_sala">
+                    Reservar Salas
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="reservar_veiculo" name="reservar_veiculo">
+                <label class="form-check-label" for="reservar_veiculo">
+                    Reservar Veículos
+                </label>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
 <hr>
 <div class="row">
     <div class="col-md-3">
-        <label class="mt-3" for="id_perfil">Status:</label>
+        <label class="mt-3" for="status">Status:</label>
         <label for="status"></label>
         <div class="form-check form-switch">
             <?php if (isset($registers->status) && $registers->status == 'on') { ?>

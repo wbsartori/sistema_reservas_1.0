@@ -63,6 +63,6 @@ class ReservationController
     public function create(): void
     {
         (new \App\Models\Reservation())->insert($_POST);
-        View::make()->redirect();
+        View::make()->redirect('/home');
     }
 }

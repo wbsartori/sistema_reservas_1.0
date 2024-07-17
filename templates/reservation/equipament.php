@@ -17,9 +17,11 @@ View::make()->load('layout/header');
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="id_usuario">ID usuário:</label>
-                            <input type="text" class="form-control" maxlength="50" id="id_usuario" name="id_usuario"
-                                   value="<?= Session::session()->getValue('user')['id'] ?? '' ?>" disabled>
+                            <label for="usuario_id">ID usuário:</label>
+                            <input type="text" class="form-control" maxlength="50" id="usuario_id" name="usuario_id"
+                                   value="<?= Session::session()->getValue('users')['id'] ?? '' ?>" disabled>
+                            <input type="hidden" class="form-control" maxlength="50" id="usuario_id" name="usuario_id"
+                                   value="<?= Session::session()->getValue('users')['id'] ?? '' ?>">
                         </div>
                     </div>
                 </div>
@@ -28,7 +30,15 @@ View::make()->load('layout/header');
                         <div class="form-group">
                             <label for="nome_usuario">Usuário:</label>
                             <input type="text" class="form-control" maxlength="50" id="nome_usuario" name="nome_usuario"
-                                   value="<?= Session::session()->getValue('user')['name'] ?? '' ?>" disabled>
+                                   value="<?= Session::session()->getValue('users')['nome_completo'] ?? '' ?>" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <input type="text" class="form-control" maxlength="50" id="descricao" name="descricao">
                         </div>
                     </div>
                 </div>
@@ -91,7 +101,7 @@ View::make()->load('layout/header');
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-check form-switch">
-                            <input class="form-input" type="hidden" id="tipo" name="tipo" value="room">
+                            <input class="form-input" type="hidden" id="tipo" name="tipo" value="equipament">
                         </div>
                     </div>
                 </div>
@@ -101,6 +111,7 @@ View::make()->load('layout/header');
                         <label for="status"></label>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="status" name="status" disabled checked>
+                            <input class="form-check-input" type="hidden" id="status" name="status" value="on">
                             <label class="form-check-label" for="status" id="label_tipo_reserva">Reservado</label>
                         </div>
                     </div>

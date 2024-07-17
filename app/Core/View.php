@@ -21,7 +21,7 @@ class View
             . $name
             . '.php';
 
-        if(!file_exists($directory)) {
+        if (!file_exists($directory)) {
             throw new Exception("Template {$name} não foi encontrado");
         }
         require $directory;
@@ -41,7 +41,7 @@ class View
             . $layout
             . '.php';
 
-        if(!file_exists($directory)) {
+        if (!file_exists($directory)) {
             throw new Exception("Layout {$layout} não foi encontrado");
         }
         include $directory;
@@ -64,17 +64,18 @@ class View
     public function alertMessage(
         string $key = null,
         string $message = null
-    ): void {
-        if($key === 'success' && $message !== null){
+    ): void
+    {
+        if ($key === 'success' && $message !== null) {
             $_SESSION[$key] = $message;
             echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
             echo $_SESSION[$key];
             echo '</div>';
-        } else if(!empty($_SESSION['success'])){
+        } else if (!empty($_SESSION['success'])) {
             echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
             echo $_SESSION['success'];
             echo '</div>';
-        } else if(!empty($_SESSION['error'])){
+        } else if (!empty($_SESSION['error'])) {
             echo '<div class="alert alert-error mt-3" id="error-alert" role="alert">';
             echo $_SESSION['error'];
             echo '</div>';

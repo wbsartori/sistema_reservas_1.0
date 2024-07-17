@@ -53,14 +53,19 @@ abstract class Model
         }
     }
 
-    public function findByWhere(array $where): mixed
+    public function meetWhere(array $where): mixed
     {
         try {
+            $whereValue = '';
+            foreach ($where as $key => $value) {
+                $whereValue .= $key . ' = :' . $key . ' and ';
+            }
+            $lenghtWhere = strlen($whereValue);
+            $newWhere = substr($whereValue, 0, $lenghtWhere -5);
             $this->connection->beginTransaction();
-            $sql = 'select * from '. $this->table . ' where id = :id';
+            $sql = 'select * from '. $this->table . ' where ' . $newWhere;
             $statement = $this->connection->prepare($sql);
-            #$statement->bindValue(':id', intval($id));
-            $statement->execute();
+            $statement->execute($where);
             return $statement->fetch();
         } catch (Throwable $exception) {
             $this->connection->rollBack();
@@ -71,8 +76,9 @@ abstract class Model
     public function insert(array $attributes)
     {
         try {
-            $attributes['crido_em'] = (new DateTime())->format('Y-m-d H:i:s');
+            $attributes['criado_em'] = (new DateTime())->format('Y-m-d H:i:s');
             $attributes['alterado_em'] = (new DateTime())->format('Y-m-d H:i:s');
+            unset($attributes['id']);
             $this->connection->beginTransaction();
             $keys = implode(',', array_keys($attributes));
             $values = implode(',', array_keys($attributes));

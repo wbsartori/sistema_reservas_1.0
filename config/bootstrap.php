@@ -5,7 +5,7 @@ use App\Core\Session\Session;
 use App\Providers\SystemProvider;
 use Pimple\Container;
 
-require dirname(__DIR__) . DIRECTORY_SEPARATOR .'vendor/autoload.php';
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
 Session::init();
 $provider = new SystemProvider();

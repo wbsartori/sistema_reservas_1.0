@@ -15,10 +15,17 @@ create table usuarios
     senha         text,
     contato       text,
     email         text,
-    permissao     text,
+    perfil               text,
+    criar_equipamento    text,
+    criar_sala           text,
+    criar_veiculo        text,
+    criar_usuario        text,
+    reservar_equipamento text,
+    reservar_sala        text,
+    reservar_veiculo     text,
     status        text,
-    criado_em     text,
-    alterado_em   text
+    criado_em     text DEFAULT current_timestamp,
+    alterado_em   text DEFAULT current_timestamp
 );
 
 create table salas
@@ -27,8 +34,8 @@ create table salas
     descricao   text,
     capacidade  text,
     status      text,
-    criado_em   text,
-    alterado_em text
+    criado_em   text DEFAULT current_timestamp,
+    alterado_em text DEFAULT current_timestamp
 );
 
 create table equipamentos
@@ -46,8 +53,8 @@ create table equipamentos
     numero_serie              text,
     status                    text,
     observacoes               text,
-    criado_em                 text,
-    alterado_em               text
+    criado_em                 text DEFAULT current_timestamp,
+    alterado_em               text DEFAULT current_timestamp
 );
 
 create table veiculos
@@ -68,8 +75,8 @@ create table veiculos
     veiculo_marca       text,
     veiculo_modelo      text,
     status              text,
-    criado_em           text,
-    alterado_em         text
+    criado_em           text DEFAULT current_timestamp,
+    alterado_em         text DEFAULT current_timestamp
 );
 
 create table reservas
@@ -77,14 +84,14 @@ create table reservas
     id             integer primary key autoincrement,
     descricao      text,
     tipo           text,
-    usuario_id     text,
-    equipamento_id text,
-    sala_id        text,
-    veiculo_id     text,
+    usuario_id     text null,
+    equipamento_id text null,
+    sala_id        text null,
+    veiculo_id     text null,
     data           text,
     horario        text,
     observacoes    text,
     status         text,
-    criado_em      text,
-    alterado_em    text
+    criado_em      text DEFAULT current_timestamp,
+    alterado_em    text DEFAULT current_timestamp
 );
