@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core;
 
+use App\Core\Session\Session;
+use App\Global\Constants;
 use Exception;
 
 class View
@@ -23,6 +27,9 @@ class View
 
         if (!file_exists($directory)) {
             throw new Exception("Template {$name} não foi encontrado");
+        }
+        if ($message !== null) {
+            Session::setKeys($message);
         }
         require $directory;
     }
@@ -49,36 +56,42 @@ class View
 
     /**
      * @param string $page
+     * @param $message
      * @return void
      */
-    public function redirect(string $page = '/'): void
+    public function redirect(string $page = '/', $message = null): void
     {
+        if ($message !== null) {
+            Session::setKeys($message);
+        }
         header('location:' . $page);
     }
 
     /**
-     * @param string|null $key
-     * @param string|null $message
      * @return void
      */
-    public function alertMessage(
-        string $key = null,
-        string $message = null
-    ): void
+    public function alertMessage(): void
     {
-        if ($key === 'success' && $message !== null) {
-            $_SESSION[$key] = $message;
+        if (Session::getValue('status') !== null && Session::getValue('status') === Constants::ERROR_STATUS) {
             echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
-            echo $_SESSION[$key];
+            echo Session::getValue('message');
             echo '</div>';
-        } else if (!empty($_SESSION['success'])) {
+        } else if (Session::getValue('status') !== null && Session::getValue('status') === Constants::SUCCESS_STATUS) {
             echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
-            echo $_SESSION['success'];
-            echo '</div>';
-        } else if (!empty($_SESSION['error'])) {
-            echo '<div class="alert alert-error mt-3" id="error-alert" role="alert">';
-            echo $_SESSION['error'];
+            echo Session::getValue('message');
             echo '</div>';
         }
+        Session::setKey('status', '');
+        Session::setKey('message', '');
+        echo "<script>";
+        echo "document.addEventListener('DOMContentLoaded', function() {";
+        echo "setTimeout(function() {";
+        echo "var alertDiv = document.getElementById('success-alert');";
+        echo "if (alertDiv) {";
+        echo "alertDiv.style.display = 'none';";
+        echo "}";
+        echo "}, 3000); ";
+        echo "});";
+        echo "</script>";
     }
 }

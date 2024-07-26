@@ -1,6 +1,5 @@
 <?php
 \App\Core\View::make()->load('layout/header');
-
 \App\Core\View::make()->alertMessage();
 ?>
 
@@ -24,11 +23,11 @@
                 <tr>
                     <td><?= $item->id ?></td>
                     <td><?= $item->descricao ?></td>
-                    <?php if($item->tipo === 'room') { ?>
-                    <td>Sala</td>
-                    <?php } elseif($item->tipo === 'equipament') { ?>
+                    <?php if ($item->tipo === 'room') { ?>
+                        <td>Sala</td>
+                    <?php } elseif ($item->tipo === 'equipament') { ?>
                         <td>Equipamento</td>
-                    <?php } elseif($item->tipo === 'vehicle') { ?>
+                    <?php } elseif ($item->tipo === 'vehicle') { ?>
                         <td>Veículo</td>
                     <?php } ?>
                     <td><?= $item->data ?></td>

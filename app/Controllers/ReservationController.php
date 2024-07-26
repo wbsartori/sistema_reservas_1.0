@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Core\View;
@@ -62,7 +64,7 @@ class ReservationController
      */
     public function create(): void
     {
-        (new \App\Models\Reservation())->insert($_POST);
-        View::make()->redirect('/home');
+        $response = (new \App\Models\Reservation())->insert($_POST);
+        View::make()->redirect('/home', $response);
     }
 }

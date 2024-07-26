@@ -7,7 +7,7 @@ drop table reservas;
 
 /*CREATE TABLES*/
 
-create table usuarios
+create table if not exists  usuarios
 (
     id            integer primary key autoincrement,
     nome_completo text,
@@ -28,7 +28,7 @@ create table usuarios
     alterado_em   text DEFAULT current_timestamp
 );
 
-create table salas
+create table if not exists  salas
 (
     id          integer primary key autoincrement,
     descricao   text,
@@ -38,7 +38,7 @@ create table salas
     alterado_em text DEFAULT current_timestamp
 );
 
-create table equipamentos
+create table if not exists  equipamentos
 (
     id                        integer primary key autoincrement,
     data_aquisicao            text,
@@ -57,7 +57,7 @@ create table equipamentos
     alterado_em               text DEFAULT current_timestamp
 );
 
-create table veiculos
+create table if not exists veiculos
 (
     id                  integer primary key autoincrement,
     descricao           text,
@@ -79,7 +79,7 @@ create table veiculos
     alterado_em         text DEFAULT current_timestamp
 );
 
-create table reservas
+create table if not exists reservas
 (
     id             integer primary key autoincrement,
     descricao      text,
@@ -95,3 +95,10 @@ create table reservas
     criado_em      text DEFAULT current_timestamp,
     alterado_em    text DEFAULT current_timestamp
 );
+
+INSERT INTO usuarios (id, nome_completo, usuario, senha, contato, email, perfil, criar_equipamento, criar_sala,
+                      criar_veiculo, criar_usuario, reservar_equipamento, reservar_sala, reservar_veiculo, status,
+                      criado_em, alterado_em)
+VALUES (1, 'Administrador', 'admin@reservas.com.br', 'admin', '49999999999', 'aadmin@reservas.com.br', 'administrador',
+        'S', 'S', 'S', 'S', 'S', 'S', 'S', 'on', current_timestamp, current_timestamp);
+

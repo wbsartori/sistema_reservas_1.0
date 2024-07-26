@@ -1,4 +1,7 @@
-<?php \App\Core\View::make()->load('layout_login/header'); ?>
+<?php
+\App\Core\View::make()->load('layout_login/header');
+\App\Core\View::make()->alertMessage();
+?>
 
 <div class="row mt-5">
     <div class="col-md-4"></div>

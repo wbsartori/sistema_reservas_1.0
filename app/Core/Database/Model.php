@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Database;
 
-use App\Core\View;
+use App\Global\Constants;
+use App\Global\Messages;
 use DateTime;
 use Exception;
 use PDO;
@@ -10,6 +13,9 @@ use Throwable;
 
 abstract class Model
 {
+    /**
+     * @var PDO
+     */
     protected PDO $connection;
 
     /**
@@ -21,9 +27,9 @@ abstract class Model
     }
 
     /**
-     * @return array|false|void
+     * @return array|false
      */
-    public function getAll()
+    public function getAll(): bool|array
     {
         try {
             $this->connection->beginTransaction();
@@ -34,10 +40,17 @@ abstract class Model
             return $statement->fetchAll();
         } catch (Throwable $exception) {
             $this->connection->rollBack();
-            View::make()->alertMessage('error', $exception->getMessage());
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
         }
     }
 
+    /**
+     * @param mixed $id
+     * @return mixed
+     */
     public function findById(mixed $id): mixed
     {
         try {
@@ -49,10 +62,17 @@ abstract class Model
             return $statement->fetch();
         } catch (Throwable $exception) {
             $this->connection->rollBack();
-            View::make()->alertMessage('error', $exception->getMessage());
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
         }
     }
 
+    /**
+     * @param array $where
+     * @return array|mixed
+     */
     public function meetWhere(array $where): mixed
     {
         try {
@@ -69,11 +89,18 @@ abstract class Model
             return $statement->fetch();
         } catch (Throwable $exception) {
             $this->connection->rollBack();
-            View::make()->alertMessage('error', $exception->getMessage());
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
         }
     }
 
-    public function insert(array $attributes)
+    /**
+     * @param array $attributes
+     * @return array|int
+     */
+    public function insert(array $attributes): array|int
     {
         try {
             $attributes['criado_em'] = (new DateTime())->format('Y-m-d H:i:s');
@@ -87,14 +114,24 @@ abstract class Model
             $statement = $this->connection->prepare($sql);
             $statement->execute($attributes);
             $this->connection->commit();
-            return $statement->rowCount();
+            return [
+                'status' => Constants::SUCCESS_STATUS,
+                'message' => Messages::CREATE_MESSAGE
+            ];
         } catch (Throwable $exception) {
             $this->connection->rollBack();
-            View::make()->alertMessage('error', $exception->getMessage());
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
         }
     }
 
-    public function update(array $attributes): int
+    /**
+     * @param array $attributes
+     * @return array|int
+     */
+    public function update(array $attributes): array|int
     {
         try {
             $attributes['alterado_em'] = (new DateTime())->format('Y-m-d H:i:s');
@@ -108,14 +145,25 @@ abstract class Model
             $statement = $this->connection->prepare($sql);
             $statement->execute($attributes);
             $this->connection->commit();
-            return $statement->rowCount();
+            return [
+                'status' => Constants::SUCCESS_STATUS,
+                'message' => Messages::UPDATE_MESSAGE
+            ];
         } catch (Throwable $exception) {
             $this->connection->rollBack();
-            View::make()->alertMessage('error', $exception->getMessage());
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
         }
     }
 
-    public function delete($field, $value)
+    /**
+     * @param $field
+     * @param $value
+     * @return array|int
+     */
+    public function delete($field, $value): array|int
     {
         try {
             $this->connection->beginTransaction();
@@ -124,10 +172,16 @@ abstract class Model
             $statement->bindValue(1, $value);
             $statement->execute();
             $this->connection->commit();
-            return $statement->rowCount();
+            return [
+                'status' => Constants::SUCCESS_STATUS,
+                'message' => Messages::DELETE_MESSAGE
+            ];
         } catch (Throwable $exception) {
             $this->connection->rollBack();
-            View::make()->alertMessage('error', $exception->getMessage());
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
         }
     }
 }

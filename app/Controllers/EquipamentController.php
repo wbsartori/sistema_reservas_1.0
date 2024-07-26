@@ -45,8 +45,8 @@ class EquipamentController
      */
     public function create(): void
     {
-        (new \App\Models\Equipament)->insert($_POST);
-        View::make()->redirect('/equipaments');
+        $response = (new \App\Models\Equipament)->insert($_POST);
+        View::make()->redirect('/equipaments', $response);
     }
 
     /**
@@ -54,8 +54,8 @@ class EquipamentController
      */
     public function update(): void
     {
-        $this->equipament->update($_POST);
-        View::make()->redirect('/equipaments');
+        $response = $this->equipament->update($_POST);
+        View::make()->redirect('/equipaments', $response);
     }
 
     /**
@@ -73,8 +73,7 @@ class EquipamentController
      */
     public function delete(): void
     {
-        $delete = $this->equipament->delete('id', $_POST['id']);
-        $registers = $this->equipament->getAll();
-        View::make()->redirect('/equipaments');
+        $response = $this->equipament->delete('id', $_POST['id']);
+        View::make()->redirect('/equipaments', $response);
     }
 }

@@ -45,8 +45,8 @@ class RoomController
      */
     public function create(): void
     {
-        $this->room->insert($_POST);
-        View::make()->redirect('/rooms');
+        $response = $this->room->insert($_POST);
+        View::make()->redirect('/rooms', $response);
     }
 
     /**
@@ -54,8 +54,8 @@ class RoomController
      */
     public function update(): void
     {
-        $this->room->update($_POST);
-        View::make()->redirect('/rooms');
+        $response = $this->room->update($_POST);
+        View::make()->redirect('/rooms', $response);
     }
 
     /**
@@ -73,7 +73,7 @@ class RoomController
      */
     public function delete(): void
     {
-        $this->room->delete('id', $_POST['id']);
-        View::make()->redirect('/rooms');
+        $response = $this->room->delete('id', $_POST['id']);
+        View::make()->redirect('/rooms', $response);
     }
 }

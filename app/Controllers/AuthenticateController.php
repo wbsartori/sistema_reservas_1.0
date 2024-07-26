@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Core\Session\Session;
 use App\Core\View;
+use App\Global\Messages;
 use App\Models\Reservation;
 use App\Models\User;
+use Exception;
 
 class AuthenticateController
 {
@@ -21,7 +25,7 @@ class AuthenticateController
 
     /**
      * @return void
-     * @throws \Exception
+     * @throws Exception
      */
     public function authenticate(): void
     {
@@ -29,7 +33,10 @@ class AuthenticateController
             || (isset($_POST['usuario']) && $_POST['usuario'] === ''
                 || isset($_POST['senha']) && $_POST['senha'] === '')
         ) {
-            View::make()->redirect();
+            View::make()->redirect('/', [
+                'status' => 'error',
+                'message' => Messages::INVALID_USER_AND_PASSWORD_NOT_VALUES,
+            ]);
             return;
         }
         $userExists = $this->user->meetWhere(
@@ -63,7 +70,10 @@ class AuthenticateController
             return;
         }
 
-        View::make()->redirect();
+        View::make()->redirect('/', [
+            'status' => 'error',
+            'message' => Messages::INVALID_USER_AND_PASSWORD,
+        ]);
     }
 
     /**

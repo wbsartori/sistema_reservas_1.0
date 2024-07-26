@@ -44,8 +44,8 @@ class VehicleController
      */
     public function create(): void
     {
-        $this->vehicle->insert($_POST);
-        View::make()->redirect('/vehicles');
+        $response = $this->vehicle->insert($_POST);
+        View::make()->redirect('/vehicles', $response);
     }
 
     /**
@@ -53,8 +53,8 @@ class VehicleController
      */
     public function update(): void
     {
-        $this->vehicle->update($_POST);
-        View::make()->redirect('/vehicles');
+        $response = $this->vehicle->update($_POST);
+        View::make()->redirect('/vehicles', $response);
     }
 
     /**
@@ -72,7 +72,7 @@ class VehicleController
      */
     public function delete(): void
     {
-        $this->vehicle->delete('id', $_POST['id']);
-        View::make()->redirect('/vehicles');
+        $response = $this->vehicle->delete('id', $_POST['id']);
+        View::make()->redirect('/vehicles', $response);
     }
 }

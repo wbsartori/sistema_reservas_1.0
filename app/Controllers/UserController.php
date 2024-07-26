@@ -44,8 +44,8 @@ class UserController
      */
     public function create(): void
     {
-        $this->user->insert($_POST);
-        View::make()->redirect('/users');
+        $response = $this->user->insert($_POST);
+        View::make()->redirect('/users', $response);
     }
 
     /**
@@ -53,8 +53,8 @@ class UserController
      */
     public function update(): void
     {
-        $delete = $this->user->update($_POST);
-        View::make()->redirect('/users');
+        $response = $this->user->update($_POST);
+        View::make()->redirect('/users', $response);
     }
 
     /**
@@ -72,7 +72,7 @@ class UserController
      */
     public function delete(): void
     {
-        $this->user->delete('id', $_POST['id']);
-        View::make()->redirect('/users');
+        $response = $this->user->delete('id', $_POST['id']);
+        View::make()->redirect('/users', $response);
     }
 }

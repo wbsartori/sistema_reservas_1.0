@@ -128,7 +128,7 @@ View::make()->load('layout/header');
                     </div>
                 </div>
                 <button class="btn btn-success mb-5 mt-5" type="submit">Salvar</button>
-                <a href="/" class="btn btn-danger mb-5 mt-5">Cancelar</a>
+                <a href="/home" class="btn btn-danger mb-5 mt-5">Cancelar</a>
             </form>
         </div>
     </div>
