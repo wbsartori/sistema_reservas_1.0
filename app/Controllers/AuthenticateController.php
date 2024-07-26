@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Session\Session;
 use App\Core\View;
+use App\Global\Constants;
 use App\Global\Messages;
 use App\Models\Reservation;
 use App\Models\User;
@@ -34,7 +35,7 @@ class AuthenticateController
                 || isset($_POST['senha']) && $_POST['senha'] === '')
         ) {
             View::make()->redirect('/', [
-                'status' => 'error',
+                'status' => Constants::ERROR_STATUS,
                 'message' => Messages::INVALID_USER_AND_PASSWORD_NOT_VALUES,
             ]);
             return;
@@ -71,7 +72,7 @@ class AuthenticateController
         }
 
         View::make()->redirect('/', [
-            'status' => 'error',
+            'status' => Constants::ERROR_STATUS,
             'message' => Messages::INVALID_USER_AND_PASSWORD,
         ]);
     }
