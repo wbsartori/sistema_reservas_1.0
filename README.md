@@ -99,5 +99,18 @@ Em sistemas Windows o comando bash pode não funcionar, desta forma altere para 
   docker exec -it nginx sh
 ```
 
+---
+
+Após rodar os containers será possível acessar através da URL localhost na porta 80:
+
+![index_image](./public/assets/images/index.png)
+
 
 ---
+
+Após fazer login será direcionado para pagina home do projeto:
+
+![index_image](./public/assets/images/home.png)
+
+---
+
