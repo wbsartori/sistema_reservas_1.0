@@ -32,7 +32,7 @@
                     <td><?= $item->modelo ?></td>
                     <td><?= $item->numero_serie ?></td>
                     <td>
-                        <?php if ($item->status == 'on') { ?>
+                        <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
                             <div class="form-group">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">

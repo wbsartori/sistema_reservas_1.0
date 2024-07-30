@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\Equipament;
+use App\Validator\StatusValidator;
 use Exception;
 
 class EquipamentController
@@ -45,6 +46,7 @@ class EquipamentController
      */
     public function create(): void
     {
+        $_POST['status'] = StatusValidator::validateStatus('create');
         $response = (new \App\Models\Equipament)->insert($_POST);
         View::make()->redirect('/equipaments', $response);
     }

@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\User;
+use App\Validator\StatusValidator;
 use Exception;
 
 class UserController
@@ -44,6 +45,7 @@ class UserController
      */
     public function create(): void
     {
+        $_POST['status'] = StatusValidator::validateStatus('create');
         $response = $this->user->insert($_POST);
         View::make()->redirect('/users', $response);
     }

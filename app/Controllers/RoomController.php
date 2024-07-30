@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\Room;
+use App\Validator\StatusValidator;
 use Exception;
 
 class RoomController
@@ -45,6 +46,7 @@ class RoomController
      */
     public function create(): void
     {
+        $_POST['status'] = StatusValidator::validateStatus('create_reservation');
         $response = $this->room->insert($_POST);
         View::make()->redirect('/rooms', $response);
     }

@@ -79,13 +79,13 @@
         <label class="mt-3" for="id_perfil">Status:</label>
         <label for="status"></label>
         <div class="form-check form-switch">
-            <?php if (isset($registers->status) && $registers->status == 'on') { ?>
+            <?php if (isset($registers->status) && $registers->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
                 <input class="form-check-input" type="checkbox" id="status" name="status"
-                       onclick="ativarDesativarUsuario()" checked>
+                        checked>
                 <label class="form-check-label" for="status" id="label_status_ativo">Inativar</label>
             <?php } else { ?>
                 <input class="form-check-input" type="checkbox" id="status" name="status"
-                       onclick="ativarDesativarUsuario()">
+                      >
                 <label class="form-check-label" for="status" id="label_status_ativo">Ativar</label>
             <?php } ?>
         </div>

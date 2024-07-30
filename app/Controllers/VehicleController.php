@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\Vehicle;
+use App\Validator\StatusValidator;
 use Exception;
 
 class VehicleController
@@ -44,6 +45,7 @@ class VehicleController
      */
     public function create(): void
     {
+        $_POST['status'] = StatusValidator::validateStatus('create');
         $response = $this->vehicle->insert($_POST);
         View::make()->redirect('/vehicles', $response);
     }

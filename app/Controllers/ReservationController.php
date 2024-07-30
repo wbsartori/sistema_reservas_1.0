@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Enums\StatusEnum;
 use App\Models\Equipament;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\Vehicle;
+use App\Validator\StatusValidator;
 use Exception;
 
 class ReservationController
@@ -64,6 +66,9 @@ class ReservationController
      */
     public function create(): void
     {
+        $status = StatusEnum::AGUARDANDO;
+        $_POST['status'] = $status->value;
+        unset($_POST['nome_usuario']);
         $response = (new \App\Models\Reservation())->insert($_POST);
         View::make()->redirect('/home', $response);
     }

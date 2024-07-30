@@ -184,4 +184,21 @@ abstract class Model
             ];
         }
     }
+
+    public function query(string $sql): bool|array
+    {
+        try {
+            $this->connection->beginTransaction();
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
+            $this->connection->commit();
+            return $statement->fetchAll();
+        } catch (Throwable $exception) {
+            $this->connection->rollBack();
+            return [
+                'status' => Constants::ERROR_STATUS,
+                'message' => $exception->getMessage()
+            ];
+        }
+    }
 }

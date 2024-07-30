@@ -19,25 +19,35 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($registers as $item) { ?>
+            <?php foreach ($registers as $item) { 
+                
+
+                ?>
                 <tr>
-                    <td><?= $item->id ?></td>
-                    <td><?= $item->descricao ?></td>
-                    <?php if ($item->tipo === 'room') { ?>
+                    <td><?= $item->reservas_id ?? '' ?></td>
+                    <td><?= $item->reservas_descricao ??'' ?></td>
+                    <?php if (isset($item->tipo) && $item->tipo === 'room') { ?>
                         <td>Sala</td>
-                    <?php } elseif ($item->tipo === 'equipament') { ?>
+                    <?php } elseif (isset($item->tipo) && $item->tipo === 'equipament') { ?>
                         <td>Equipamento</td>
-                    <?php } elseif ($item->tipo === 'vehicle') { ?>
+                    <?php } elseif (isset($item->tipo) && $item->tipo === 'vehicle') { ?>
                         <td>Veículo</td>
                     <?php } ?>
-                    <td><?= $item->data ?></td>
-                    <td><?= $item->horario ?></td>
+                    <td><?= $item->reservas_data ??'' ?></td>
+                    <td><?= $item->reservas_horario ?? '' ?></td>
                     <td>
-                        <?php if ($item->status == 'on') { ?>
+                        <?php if (isset($item->reservas_status) && $item->reservas_status === \App\Enums\StatusEnum::APROVADO->value) { ?>
                             <div class="form-group">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
                                     <label class="btn btn-success" for="status_ativo">Reservado</label>
+                                </div>
+                            </div>
+                        <?php } else if (isset($item->reservas_status) && $item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value) { ?>
+                            <div class="form-group">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
+                                    <label class="btn btn-warning" for="status_ativo">Aguardando aprovação</label>
                                 </div>
                             </div>
                         <?php } else { ?>
@@ -50,6 +60,21 @@
                         <?php } ?>
                     </td>
                     <td>
+                        <?php if ((isset($item->usuarios_perfil) && $item->usuarios_perfil === \App\Validator\ProfileStatus::ADMINISTRADOR->value) && $item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value) { ?>
+                            <div class="form-group">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
+                                    <label class="btn btn-success" for="status_ativo">Aprovar</label>
+                                </div>
+                            </div>
+                        <?php } else if ((isset($item->usuarios_perfil) && $item->usuarios_perfil === \App\Validator\ProfileStatus::ADMINISTRADOR->value) && $item->reservas_status === \App\Enums\StatusEnum::APROVADO->value) { ?>
+                            <div class="form-group">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
+                                    <label class="btn btn-success" for="status_ativo">Reprovar</label>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </td>
                 </tr>
             <?php } ?>

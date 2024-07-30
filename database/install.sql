@@ -100,5 +100,5 @@ INSERT INTO usuarios (id, nome_completo, usuario, senha, contato, email, perfil,
                       criar_veiculo, criar_usuario, reservar_equipamento, reservar_sala, reservar_veiculo, status,
                       criado_em, alterado_em)
 VALUES (1, 'Administrador', 'admin@reservas.com.br', 'admin', '49999999999', 'aadmin@reservas.com.br', 'administrador',
-        'S', 'S', 'S', 'S', 'S', 'S', 'S', 'on', current_timestamp, current_timestamp);
+        'S', 'S', 'S', 'S', 'S', 'S', 'S', 'ativo', current_timestamp, current_timestamp);
 

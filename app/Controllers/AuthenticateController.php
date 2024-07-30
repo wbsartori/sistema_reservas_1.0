@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Session\Session;
 use App\Core\View;
+use App\Enums\StatusEnum;
 use App\Global\Constants;
 use App\Global\Messages;
 use App\Models\Reservation;
@@ -46,7 +47,7 @@ class AuthenticateController
                 'senha' => $_POST['senha']
             ]
         );
-        if (is_object($userExists) && $userExists->status === 'on') {
+        if (is_object($userExists) && $userExists->status === StatusEnum::ATIVO->value) {
             Session::init();
             Session::session()->setKeys([
                 'users' => [
@@ -66,7 +67,7 @@ class AuthenticateController
                     ],
                 ]
             ]);
-            $registers = (new Reservation())->getAll();
+            $registers = (new Reservation())->currentReservationsByUser(Session::getValue("users")['id']);
             View::make()->template('/home/index', $registers);
             return;
         }

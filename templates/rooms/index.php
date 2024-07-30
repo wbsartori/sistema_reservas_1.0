@@ -26,7 +26,7 @@
                     <td><?php echo $item->id ?></td>
                     <td><?php echo $item->descricao ?></td>
                     <td><?php echo $item->capacidade ?></td>
-                    <?php if ($item->status == 'on') { ?>
+                    <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-success">Ativo</button>
