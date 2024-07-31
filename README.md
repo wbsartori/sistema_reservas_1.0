@@ -6,10 +6,9 @@
 ---
 
 - Cadastro de usuários
-  - [X] Usuários
-  - [X] Permissões
   - [X] Equipamentos 
-  - [X] Equipamentos 
+  - [X] Salas 
+  - [X] Usuários 
   - [X] Veículos
 
 
@@ -33,6 +32,10 @@
 ---
 
 ### Instalação
+
+---
+
+Entendendo que foi instalado o php e o composer no seu ambiente de produção.
 
 --- 
 
@@ -70,6 +73,15 @@ server {
 }
 
 ```
+---
+
+Após realizar a instalação acesse a pagina https://localhost
+
+Caso você tenha configurado o nginx com algum host acesse a url com o nome do teu host ou IP.
+
+Devera ser viusalizado a páginade login do sistema:
+
+![index_image](./public/assets/images/index.png)
 
 ---
 
@@ -114,3 +126,7 @@ Após fazer login será direcionado para pagina home do projeto:
 
 ---
 
+
+### Para obter a versão 2.0 ou solicitar algum serviço:
+
+<p style="text-align: center">Acesse a pagina https://wbsartori.com.br</p>
