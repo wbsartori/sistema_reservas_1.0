@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Enums\StatusEnum;
 use App\Models\Vehicle;
 use App\Validator\StatusValidator;
 use Exception;
@@ -45,7 +46,7 @@ class VehicleController
      */
     public function create(): void
     {
-        $_POST['status'] = StatusValidator::validateStatus('create');
+        $_POST['status'] = StatusEnum::ATIVO->value;
         $response = $this->vehicle->insert($_POST);
         View::make()->redirect('/vehicles', $response);
     }

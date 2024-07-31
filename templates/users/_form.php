@@ -130,14 +130,14 @@
             <p>Reservas</p>
             <?php if(isset($registers->reservar_equipamento) && $registers->reservar_equipamento === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="reservar_equipamento" name="reservar_equipamento" checked>
+                    <input class="form-check-input" type="checkbox" id="reservar_equipamento" name="reservar_equipamento" checked>
                     <label class="form-check-label" for="reservar_equipamento">
                         Reservar Equipamentos
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="reservar_equipamento" name="reservar_equipamento">
+                    <input class="form-check-input" type="checkbox" id="reservar_equipamento" name="reservar_equipamento">
                     <label class="form-check-label" for="reservar_equipamento">
                         Reservar Equipamentos
                     </label>
@@ -154,7 +154,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="N" id="reservar_sala" name="reservar_sala">
                     <label class="form-check-label" for="reservar_sala">
-                        Reservar Equipamentos
+                        Reservar Sala
                     </label>
                 </div>
             <?php }?>

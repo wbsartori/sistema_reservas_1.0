@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Enums\StatusEnum;
 use App\Models\Room;
 use App\Validator\StatusValidator;
 use Exception;
@@ -46,7 +47,7 @@ class RoomController
      */
     public function create(): void
     {
-        $_POST['status'] = StatusValidator::validateStatus('create_reservation');
+        $_POST['status'] = StatusEnum::ATIVO->value;
         $response = $this->room->insert($_POST);
         View::make()->redirect('/rooms', $response);
     }

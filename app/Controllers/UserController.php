@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Enums\StatusEnum;
 use App\Models\User;
 use App\Validator\StatusValidator;
 use Exception;
@@ -45,7 +46,8 @@ class UserController
      */
     public function create(): void
     {
-        $_POST['status'] = StatusValidator::validateStatus('create');
+        //TODO: AJUSTAR A QUESTÂO DOS STATUS DAS PERMISSOES
+        $_POST['status'] = StatusEnum::ATIVO->value;
         $response = $this->user->insert($_POST);
         View::make()->redirect('/users', $response);
     }

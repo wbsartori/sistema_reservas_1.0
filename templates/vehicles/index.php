@@ -14,6 +14,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Descrição</th>
+                <th scope="col">Modelo</th>
                 <th scope="col" class="text-center">Status</th>
                 <th scope="col" class="text-center">Ações</th>
             </tr>
@@ -22,6 +23,7 @@
             <?php foreach ($registers as $item) { ?>
                 <tr>
                     <td><?= $item->id ?></td>
+                    <td><?= $item->descricao ?></td>
                     <td><?= $item->veiculo_modelo ?></td>
                     <td class="text-center">
                         <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>

@@ -48,16 +48,16 @@
                 <?php } ?>
 
                 <option value="">---</option>
-                <option value="white">Branco</option>
-                <option value="black">Preto</option>
-                <option value="silver">Prata</option>
-                <option value="grey">Cinza</option>
-                <option value="blue">Azul</option>
-                <option value="red">Vermelho</option>
-                <option value="dark-blue">Azul escuro</option>
-                <option value="beige">Bege</option>
-                <option value="green">Verde</option>
-                <option value="brown">Marrom</option>
+                <option value="branco">Branco</option>
+                <option value="preto">Preto</option>
+                <option value="prata">Prata</option>
+                <option value="cinza">Cinza</option>
+                <option value="azul">Azul</option>
+                <option value="vermelho">Vermelho</option>
+                <option value="azul escuro">Azul escuro</option>
+                <option value="bege">Bege</option>
+                <option value="verde">Verde</option>
+                <option value="marrom">Marrom</option>
                 <option value="outro">Outro</option>
             </select>
         </div>
