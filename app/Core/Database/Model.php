@@ -55,7 +55,7 @@ abstract class Model
     {
         try {
             $this->connection->beginTransaction();
-            $sql = 'select * from '. $this->table . ' where id = :id';
+            $sql = 'select * from ' . $this->table . ' where id = :id';
             $statement = $this->connection->prepare($sql);
             $statement->bindValue(':id', intval($id));
             $statement->execute();
@@ -81,9 +81,9 @@ abstract class Model
                 $whereValue .= $key . ' = :' . $key . ' and ';
             }
             $lenghtWhere = strlen($whereValue);
-            $newWhere = substr($whereValue, 0, $lenghtWhere -5);
+            $newWhere = substr($whereValue, 0, $lenghtWhere - 5);
             $this->connection->beginTransaction();
-            $sql = 'select * from '. $this->table . ' where ' . $newWhere;
+            $sql = 'select * from ' . $this->table . ' where ' . $newWhere;
             $statement = $this->connection->prepare($sql);
             $statement->execute($where);
             return $statement->fetch();
@@ -109,8 +109,8 @@ abstract class Model
             $this->connection->beginTransaction();
             $keys = implode(',', array_keys($attributes));
             $values = implode(',', array_keys($attributes));
-            $values = ':'.str_replace(',', ', :', $keys);
-            $sql = 'insert into ' . $this->table .' (' .$keys . ') values (' . $values . ')';
+            $values = ':' . str_replace(',', ', :', $keys);
+            $sql = 'insert into ' . $this->table . ' (' . $keys . ') values (' . $values . ')';
             $statement = $this->connection->prepare($sql);
             $statement->execute($attributes);
             $this->connection->commit();
@@ -167,7 +167,7 @@ abstract class Model
     {
         try {
             $this->connection->beginTransaction();
-            $sql = 'delete from ' . $this->table . ' where '. $field . ' = ?';
+            $sql = 'delete from ' . $this->table . ' where ' . $field . ' = ?';
             $statement = $this->connection->prepare($sql);
             $statement->bindValue(1, $value);
             $statement->execute();

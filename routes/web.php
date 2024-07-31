@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Core\Session\Session;
 
-if(count(Session::session()::get()) > 0) {
+if (count(Session::session()::get()) > 0) {
     return [
         '/' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'index'],
         '/home' => ['controller' => \App\Controllers\HomeController::class, 'method' => 'index'],
@@ -41,6 +41,8 @@ if(count(Session::session()::get()) > 0) {
         '/reservations/equipament' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addEquipament'],
         '/reservations/room' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addRoom'],
         '/reservations/vehicle' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'addVehicle'],
+        '/reservations/approved' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'approved'],
+        '/reservations/canceled' => ['controller' => \App\Controllers\ReservationController::class, 'method' => 'canceled'],
 
         '/login' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'index'],
         '/login/authenticate' => ['controller' => \App\Controllers\AuthenticateController::class, 'method' => 'authenticate'],

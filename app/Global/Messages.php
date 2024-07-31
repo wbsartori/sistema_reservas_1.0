@@ -10,4 +10,6 @@ class Messages
     public const DELETE_MESSAGE = 'Registro removido com sucesso!';
     public const INVALID_USER_AND_PASSWORD = 'Usuário ou senha inválidos!';
     public const INVALID_USER_AND_PASSWORD_NOT_VALUES = 'Usuário e senha precisam estar preenchidos!';
+    public const APROVED_MESSAGE = 'Reserva aprovada com sucesso!';
+    public const CANCELED_MESSAGE = 'Reserva cancelada com sucesso!';
 }
