@@ -18,8 +18,8 @@
                 <th scope="col">Marca</th>
                 <th scope="col">Modelo</th>
                 <th scope="col">N&ordm Série</th>
-                <th scope="col">Status</th>
-                <th scope="col">Ações</th>
+                <th scope="col" class="text-center">Status</th>
+                <th scope="col" class="text-center">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -31,7 +31,7 @@
                     <td><?= $item->equipamento_marca ?></td>
                     <td><?= $item->modelo ?></td>
                     <td><?= $item->numero_serie ?></td>
-                    <td>
+                    <td class="text-center">
                         <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
                             <div class="form-group">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -48,8 +48,8 @@
                             </div>
                         <?php } ?>
                     </td>
-                    <td>
-                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                    <td class="text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
                             <form action="/equipaments/edit" method="post">
                                 <input type="hidden" class="btn-check" name="id" id="id"
                                        value="<?php echo $item->id ?? ''; ?>">

@@ -15,8 +15,8 @@
                 <th scope="col">Id</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Capacidade</th>
-                <th scope="col">Status</th>
-                <th scope="col"></th>
+                <th scope="col" class="text-center">Status</th>
+                <th scope="col" class="text-center">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -27,20 +27,20 @@
                     <td><?php echo $item->descricao ?></td>
                     <td><?php echo $item->capacidade ?></td>
                     <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
-                        <td>
+                        <td class="text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-success">Ativo</button>
                             </div>
                         </td>
                     <?php } else { ?>
-                        <td>
+                        <td class="text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-danger">Inativo</button>
                             </div>
                         </td>
                     <?php } ?>
-                    <td>
-                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                    <td class="text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
                             <form action="/rooms/edit" method="post">
                                 <input type="hidden" class="btn-check" name="id" id="id"
                                        value="<?php echo $item->id ?? ''; ?>">

@@ -16,8 +16,8 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Ramal</th>
                 <th scope="col">E-mail</th>
-                <th scope="col">Status</th>
-                <th scope="col"></th>
+                <th scope="col" class="text-center">Status</th>
+                <th scope="col" class="text-center">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                     <td><?php echo $item->nome_completo ?></td>
                     <td><?php echo $item->email ?></td>
                     <td><?php echo $item->contato ?></td>
-                    <td>
+                    <td class="text-center">
                         <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
                             <div class="form-group">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -46,8 +46,8 @@
                             </div>
                         <?php } ?>
                     </td>
-                    <td>
-                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                    <td class="text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
                             <form action="/users/edit" method="post">
                                 <input type="hidden" class="btn-check" name="id" id="id"
                                        value="<?php echo $item->id ?? ''; ?>">
