@@ -129,4 +129,9 @@ Após fazer login será direcionado para pagina home do projeto:
 
 ### Para obter a versão 2.0 ou solicitar algum serviço:
 
-<p style="text-align: center">Acesse a pagina https://wbsartori.com.br</p>
+<strong>Acesse a pagina</strong> https://wbsartori.com.br
+
+<strong>Mande um e-mail</strong> wbsartori@gmail.com
+
+
+----
