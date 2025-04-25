@@ -39,7 +39,7 @@ class HomeController
                 usuarios.perfil as usuarios_perfil
             FROM reservas
                      LEFT JOIN usuarios ON usuarios.id = reservas.usuario_id
-            WHERE reservas.usuario_id = ' . Session::getValue("users")['id'] . '
+            WHERE reservas.usuario_id = ' . Session::make()->getValue("users")['id'] . '
         ');
         View::make()->template('home/index', $registers);
     }

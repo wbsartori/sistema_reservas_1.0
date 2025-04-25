@@ -18,12 +18,22 @@ abstract class Model
      */
     protected PDO $connection;
 
+
+    private const DRIVERS = [
+        'mysql' => PDOMysqlConnection::class,
+        'sqlite' => PDOSqliteConnection::class,
+    ];
+
     /**
      * @throws Exception
      */
     public function __construct()
     {
-        $this->connection = PDOSqliteConnection::connect();
+        if(array_key_exists($_ENV['DB_DRIVER'], self::DRIVERS)) {
+            $this->connection = self::DRIVERS[$_ENV['DB_DRIVER']]::connect();
+        } else {
+            $this->connection = PDOSqliteConnection::connect();
+        }
     }
 
     /**

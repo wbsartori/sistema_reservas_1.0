@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Controllers\Error404Controller;
 use Exception;
 
 class Routes
@@ -17,7 +18,8 @@ class Routes
         $routes = require dirname(__DIR__, 2) . '/routes/web.php';
         $uri = Uri::load();
         if(!array_key_exists($uri, $routes)) {
-            throw new Exception('Page not found!');
+            $controller = new Error404Controller();
+            return $controller->index();
         }
         if(!class_exists($routes[$uri]['controller'])) {
             throw new Exception('Controller not found!');

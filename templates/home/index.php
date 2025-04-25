@@ -1,90 +1,86 @@
 <?php
 \App\Core\View::make()->load('layout/header');
-\App\Core\View::make()->alertMessage();
+//\App\Core\View::make()->alertMessage();
 ?>
 
-<h4 class="mt-5">Reservas</h4>
-<hr class="bg-dark">
-<div class="container-fluid">
-    <div class="row mt-5">
-        <table class="table table-striped">
-            <thead>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold">Reservas</h4>
+        <a href="/reservations/add" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i> Nova Reserva
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Data</th>
-                <th scope="col">Horário</th>
-                <th scope="col" class="text-center">Status</th>
-                <th scope="col" class="text-center">Ações</th>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th class="text-center">Status</th>
+                <th class="text-end">Ações</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($registers as $item) { ?>
+            <?php foreach ($registers as $item): ?>
                 <tr>
                     <td><?= $item->reservas_id ?? '' ?></td>
                     <td><?= $item->reservas_descricao ?? '' ?></td>
-                    <?php if (isset($item->tipo) && $item->tipo === 'room') { ?>
-                        <td>Sala</td>
-                    <?php } elseif (isset($item->tipo) && $item->tipo === 'equipament') { ?>
-                        <td>Equipamento</td>
-                    <?php } elseif (isset($item->tipo) && $item->tipo === 'vehicle') { ?>
-                        <td>Veículo</td>
-                    <?php } ?>
+                    <td>
+                        <?php
+                        if (isset($item->tipo)) {
+                            echo match($item->tipo) {
+                                'room' => 'Sala',
+                                'equipament' => 'Equipamento',
+                                'vehicle' => 'Veículo',
+                                default => '-',
+                            };
+                        }
+                        ?>
+                    </td>
                     <td><?= $item->reservas_data ?? '' ?></td>
                     <td><?= $item->reservas_horario ?? '' ?></td>
                     <td class="text-center">
-                        <?php if (isset($item->reservas_status) && $item->reservas_status === \App\Enums\StatusEnum::APROVADO->value) { ?>
-                            <div class="form-group">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
-                                    <label class="btn btn-success"
-                                           for="status_ativo"><?php echo ucfirst($item->reservas_status) ?></label>
-                                </div>
-                            </div>
-                        <?php } else if (isset($item->reservas_status) && $item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value) { ?>
-                            <div class="form-group">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="status_ativo" id="status_ativo">
-                                    <label class="btn btn-warning"
-                                           for="status_ativo"><?php echo ucfirst($item->reservas_status) ?></label>
-                                </div>
-                            </div>
-                        <?php } else { ?>
-                            <div class="form-group">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="status_inativo" id="status_inativo">
-                                    <label class="btn btn-danger"
-                                           for="status_inativo"><?php echo ucfirst($item->reservas_status) ?></label>
-                                </div>
-                            </div>
-                        <?php } ?>
+                            <span class="badge <?= $item->reservas_status === \App\Enums\StatusEnum::APROVADO->value ? 'bg-success' : ($item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value ? 'bg-warning' : 'bg-danger') ?>">
+                                <?= ucfirst($item->reservas_status) ?>
+                            </span>
                     </td>
-                    <td class="text-center">
-                        <?php if ((isset($item->usuarios_perfil) && $item->usuarios_perfil === \App\Validator\ProfileStatus::ADMINISTRADOR->value)
-                            && $item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value
-                        ) { ?>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <form action="/reservations/approved" method="post">
-                                    <input type="hidden" name="_id" id="_id" value="<?php echo $item->reservas_id ?>">
-                                    <button type="submit" class="btn btn-primary">Aprovar</button>
+                    <td class="text-end">
+                        <!-- Aprovar / Cancelar -->
+                        <?php if (isset($item->usuarios_perfil) && $item->usuarios_perfil === \App\Validator\ProfileStatus::ADMINISTRADOR->value): ?>
+                            <?php if ($item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value): ?>
+                                <form action="/reservations/approved" method="post" class="d-inline">
+                                    <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
+                                    <button class="btn btn-sm btn-outline-success" title="Aprovar">
+                                        <i class="bi bi-check2"></i>
+                                    </button>
                                 </form>
-                                <form action="/reservations/canceled" method="post">
-                                    <input type="hidden" name="_id" id="_id" value="<?php echo $item->reservas_id ?>">
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                                <form action="/reservations/canceled" method="post" class="d-inline">
+                                    <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
+                                    <button class="btn btn-sm btn-outline-danger" title="Cancelar">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
                                 </form>
-                            </div>
-                        <?php } else if ((isset($item->usuarios_perfil) && $item->usuarios_perfil === \App\Validator\ProfileStatus::ADMINISTRADOR->value)
-                            && $item->reservas_status === \App\Enums\StatusEnum::APROVADO->value) { ?>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <form action="/reservations/canceled" method="post">
-                                    <input type="hidden" name="_id" id="_id" value="<?php echo $item->reservas_id ?>">
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                            <?php elseif ($item->reservas_status === \App\Enums\StatusEnum::APROVADO->value): ?>
+                                <form action="/reservations/canceled" method="post" class="d-inline">
+                                    <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
+                                    <button class="btn btn-sm btn-outline-danger" title="Cancelar">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
                                 </form>
-                            </div>
-                        <?php } ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php endforeach; ?>
+            <?php if (empty($registers)): ?>
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Nenhuma reserva encontrada.</td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
     </div>

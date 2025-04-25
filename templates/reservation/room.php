@@ -19,7 +19,7 @@ View::make()->load('layout/header');
                         <div class="form-group">
                             <label for="usuario_id">ID usuário:</label>
                             <input type="text" class="form-control" maxlength="50" id="usuario_id" name="usuario_id"
-                                   value="<?= Session::getValue('users')['id'] ?>" readonly>
+                                   value="<?= Session::make()->getValue('users')['id'] ?>" readonly>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ View::make()->load('layout/header');
                         <div class="form-group">
                             <label for="nome_usuario">Usuário:</label>
                             <input type="text" class="form-control" maxlength="50" id="nome_usuario" name="nome_usuario"
-                                   value="<?= Session::getValue('users')['nome_completo'] ?>" readonly>
+                                   value="<?= Session::make()->getValue('users')['nome_completo'] ?>" readonly>
                         </div>
                     </div>
                 </div>

@@ -19,9 +19,9 @@ View::make()->load('layout/header');
                         <div class="form-group">
                             <label for="usuario_id">ID usuário:</label>
                             <input type="text" class="form-control" maxlength="50" id="usuario_id" name="usuario_id"
-                                   value="<?= Session::session()->getValue('users')['id'] ?? '' ?>" disabled>
+                                   value="<?= Session::make()->getValue('users')['id'] ?? '' ?>" disabled>
                             <input type="hidden" class="form-control" maxlength="50" id="usuario_id" name="usuario_id"
-                                   value="<?= Session::session()->getValue('users')['id'] ?? '' ?>">
+                                   value="<?= Session::make()->getValue('users')['id'] ?? '' ?>">
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@ View::make()->load('layout/header');
                         <div class="form-group">
                             <label for="nome_usuario">Usuário:</label>
                             <input type="text" class="form-control" maxlength="50" id="nome_usuario" name="nome_usuario"
-                                   value="<?= Session::session()->getValue('users')['nome_completo'] ?? '' ?>" disabled>
+                                   value="<?= Session::make()->getValue('users')['nome_completo'] ?? '' ?>" disabled>
                         </div>
                     </div>
                 </div>

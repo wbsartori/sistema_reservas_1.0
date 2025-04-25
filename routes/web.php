@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Core\Session\Session;
 
-if (count(Session::session()::get()) > 0) {
+if (count(Session::make()->get()) > 0) {
     return [
         '/' => ['controller' => \App\Controllers\LoginController::class, 'method' => 'index'],
         '/home' => ['controller' => \App\Controllers\HomeController::class, 'method' => 'index'],

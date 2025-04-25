@@ -2,3 +2,6 @@ vendor/
 .idea/
 database/database.sqlite
 logs/
+.env
+
+composer.lock

@@ -14,6 +14,7 @@
     ],
     "require": {
       "ext-pdo": "*",
-        "pimple/pimple": "^3.5"
+        "pimple/pimple": "^3.5",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

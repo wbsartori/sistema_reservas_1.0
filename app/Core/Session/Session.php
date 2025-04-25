@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Session;
 
 class Session
@@ -9,20 +11,18 @@ class Session
      */
     private static Session $session;
 
+    public static function make(): Session
+    {
+        return new self();
+    }
+
     /**
      * @return Session
      */
-    public static function init(): Session
+    public function init(): Session
     {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+        session_start();
         self::$session = new self();
-        return self::$session;
-    }
-
-    public static function session(): Session
-    {
         return self::$session;
     }
 
@@ -30,12 +30,14 @@ class Session
      * @param array|null $sessionData
      * @return void
      */
-    public static function setKeys(array $sessionData = null): void
+    public function setKeys(array $sessionData = null): void
     {
-        if ($sessionData !== null) {
+        if ($sessionData !== null || $sessionData !== []) {
             foreach ($sessionData as $key => $value) {
                 $_SESSION[$key] = $value;
             }
+        } else {
+            $_SESSION = [];
         }
     }
 
@@ -44,7 +46,7 @@ class Session
      * @param string $value
      * @return void
      */
-    public static function setKey(string $key, string $value): void
+    public function setKey(string $key, string $value): void
     {
         $_SESSION[$key] = $value;
     }
@@ -53,7 +55,7 @@ class Session
      * @param string $key
      * @return mixed
      */
-    public static function getValue(string $key): mixed
+    public function getValue(string $key): mixed
     {
         return $_SESSION[$key] ?? null;
     }
@@ -61,7 +63,7 @@ class Session
     /**
      * @return array
      */
-    public static function get(): array
+    public function get(): array
     {
         return $_SESSION ?? [];
     }
@@ -69,7 +71,7 @@ class Session
     /**
      * @return void
      */
-    public static function destroy(): void
+    public function destroy(): void
     {
         self::setKeys([]);
         session_destroy();
