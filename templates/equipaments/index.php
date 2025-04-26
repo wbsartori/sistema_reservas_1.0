@@ -59,16 +59,20 @@
                                 <div class="modal-content border-0 shadow">
                                     <div class="modal-header bg-danger text-white">
                                         <h5 class="modal-title">Confirmação de exclusão</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                        <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="modal"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Tem certeza que deseja excluir o equipamento <strong><?= $item->descricao ?></strong> (ID <?= $item->id ?>)?
+                                        Tem certeza que deseja excluir o equipamento
+                                        <strong><?= $item->descricao ?></strong> (ID <?= $item->id ?>)?
                                     </div>
                                     <div class="modal-footer">
                                         <form action="/equipaments/delete" method="post">
                                             <input type="hidden" name="id" value="<?= $item->id ?>">
                                             <button type="submit" class="btn btn-danger">Confirmar</button>
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Cancelar
+                                            </button>
                                         </form>
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@
         </a>
     </div>
 
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
             <form method="post" action="/equipaments/update">
                 <input type="hidden" id="id" name="id" value="<?= $registers->id ?? ''; ?>" />

@@ -8,7 +8,9 @@
         </a>
     </div>
 
-    <div class="card shadow-sm border-0">
+    <hr class="bg-dark">
+
+    <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
             <form method="post" action="/equipaments/create">
                 <?php include('_form.php'); ?>

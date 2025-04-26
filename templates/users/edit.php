@@ -3,10 +3,10 @@
 <div class="container">
     <h4 class="mt-5">Cadastro/Usuarios</h4>
     <hr class="bg-dark">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
             <form method="post" action="/users/update">
-                <input type="hidden" id="id" name="id" value="<?= $registers->id ?? ''; ?>" />
+                <input type="hidden" id="id" name="id" value="<?= $registers->id ?? ''; ?>"/>
                 <?php include('_form.php'); ?>
                 <hr class="bg-dark">
                 <button class="btn btn-success mb-5" type="submit">Salvar</button>

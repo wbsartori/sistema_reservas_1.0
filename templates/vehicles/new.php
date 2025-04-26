@@ -3,15 +3,15 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="fw-bold">Cadastro de Veículos</h4>
-        <a href="/vehicles" class="btn btn-danger">
+        <a href="/vehicles" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i> Voltar
         </a>
     </div>
 
     <hr class="bg-dark">
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
             <form method="post" action="/vehicles/create">
                 <?php include('_form.php'); ?>
 

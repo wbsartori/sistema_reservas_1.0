@@ -6,7 +6,7 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="fw-bold">Reservas</h4>
-        <a href="/reservations/add" class="btn btn-primary">
+        <a href="/reservations/create" class="btn btn-primary">
             <i class="bi bi-plus-lg me-1"></i> Nova Reserva
         </a>
     </div>

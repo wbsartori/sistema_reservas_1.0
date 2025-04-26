@@ -10,8 +10,8 @@
 
     <hr class="bg-dark">
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
             <form method="post" action="/rooms/update">
                 <input type="hidden" class="form-control" maxlength="7" id="id" name="id"
                        value="<?= $registers->id ?? ''; ?>">

@@ -10,15 +10,21 @@
 
     <hr class="bg-dark">
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
             <form method="post" action="/vehicles/update">
                 <input type="hidden" class="form-control" maxlength="7" id="id" name="id"
                        value="<?= $registers->id ?? ''; ?>">
                 <?php include('_form.php'); ?>
                 <hr class="bg-dark">
-                <button class="btn btn-success mb-5" type="submit">Salvar</button>
-                <a href="/vehicles" class="btn btn-danger mb-5">Cancelar</a>
+                <div class="d-flex justify-content-end mt-4">
+                    <button class="btn btn-success mb-5" type="submit">
+                        <i class="bi bi-save me-1"></i> Salvar
+                    </button>
+                    <a href="/vehicles" class="btn btn-danger mb-5 ms-2">
+                        <i class="bi bi-x-lg me-1"></i> Cancelar
+                    </a>
+                </div>
             </form>
         </div>
     </div>

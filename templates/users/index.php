@@ -3,20 +3,26 @@
 \App\Core\View::make()->alertMessage();
 ?>
 
-<h4 class="mt-5">Usuários</h4>
-<hr class="bg-dark">
-<a href="/users/add" class="btn btn-primary">Novo</a>
-<hr class="bg-dark">
-<div class="container-fluid">
-    <div class="row mt-5">
-        <table class="table table-striped">
-            <thead>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold">Usuários</h4>
+        <a href="/users/add" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i> Novo
+        </a>
+    </div>
+
+    <hr class="bg-dark">
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Ramal</th>
                 <th scope="col">E-mail</th>
-                <th scope="col" class="text-center">Status</th>
+                <th scope="col">Status</th>
                 <th scope="col" class="text-center">Ações</th>
             </tr>
             </thead>
@@ -27,74 +33,51 @@
                     <td><?php echo $item->nome_completo ?></td>
                     <td><?php echo $item->email ?></td>
                     <td><?php echo $item->contato ?></td>
-                    <td class="text-center">
-                        <?php if ($item->status === \App\Enums\StatusEnum::ATIVO->value) { ?>
-                            <div class="form-group">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="status_ativo" id="status_ativo"
-                                           autocomplete="off" checked>
-                                    <label class="btn btn-success" for="status_ativo">Ativo</label>
-                                </div>
-                            </div>
-                        <?php } else { ?>
-                            <div class="form-group">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="status_inativo" id="status_inativo"
-                                           autocomplete="off" checked>
-                                    <label class="btn btn-danger" for="status_inativo">Inativo</label>
-                                </div>
-                            </div>
-                        <?php } ?>
+                    <td>
+                        <span class="badge <?= $item->status === \App\Enums\StatusEnum::ATIVO->value ? 'bg-success' : 'bg-secondary' ?>">
+                            <?= $item->status === \App\Enums\StatusEnum::ATIVO->value ? 'Ativo' : 'Inativo' ?>
+                        </span>
                     </td>
                     <td class="text-center">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <form action="/users/edit" method="post">
-                                <input type="hidden" class="btn-check" name="id" id="id"
-                                       value="<?php echo $item->id ?? ''; ?>">
-                                <button type="submit" class="btn btn-warning">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </form>
-
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#confimarDelete<?= $item->id; ?>">
-                                <i class="bi bi-trash"></i>
+                        <!-- Editar -->
+                        <form action="/users/edit" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="<?= $item->id ?>">
+                            <button class="btn btn-sm btn-outline-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
                             </button>
+                        </form>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="confimarDelete<?= $item->id; ?>" data-bs-backdrop="static"
-                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-danger">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Excluir</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><?php echo \App\Global\Messages::DELETE_CONFIRMATION_MESSAGE ?></p>
-                                            <label for="veiculo_tipo_id">Id:</label>
-                                            <input type="text" class="form-control" id="id" name="id"
-                                                   value="<?php echo $item->id; ?>" disabled>
-                                            <hr>
-                                            <label for="nome">Nome:</label>
-                                            <input type="text" class="form-control" id="nome" name="nome"
-                                                   value="<?php echo $item->nome_completo; ?>" disabled>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form action="/users/delete" method="post">
-                                                <input type="hidden" name="id" id="id" value="<?php echo $item->id ?>">
-                                                <button type="submit" class="btn btn-warning">Confirmar<i
-                                                            class="bi bi-pencil-square"></i></button>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Cancelar
-                                                </button>
-                                            </form>
-                                        </div>
+                        <!-- Deletar -->
+                        <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal<?= $item->id ?>" title="Excluir">
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal<?= $item->id ?>" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content border-0 shadow">
+                                    <div class="modal-header bg-danger text-white">
+                                        <h5 class="modal-title">Confirmação de exclusão</h5>
+                                        <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja excluir o usuario
+                                        <strong><?= $item->usuario ?></strong> (ID <?= $item->id ?>)?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="/users/delete" method="post">
+                                            <input type="hidden" name="id" value="<?= $item->id ?>">
+                                            <button type="submit" class="btn btn-danger">Confirmar</button>
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Cancelar
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </td>
                 </tr>
             <?php } ?>
