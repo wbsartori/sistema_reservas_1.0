@@ -1,5 +1,6 @@
 <?php
 \App\Core\View::make()->load('layout/header');
+\App\Core\View::make()->alertMessage();
 ?>
 
 <div class="container py-5">

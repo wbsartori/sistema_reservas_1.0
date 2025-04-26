@@ -101,5 +101,6 @@ class View
             echo "});";
             echo "</script>";
         }
+        Session::make()->removeKeys(['status', 'message']);
     }
 }

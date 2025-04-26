@@ -3,7 +3,6 @@
 \App\Core\View::make()->alertMessage();
 ?>
 
-
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="fw-bold">Usuários</h4>

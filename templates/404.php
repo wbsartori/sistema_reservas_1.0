@@ -49,7 +49,7 @@
     <div class="error-text text-muted">
         Opa! A página que você tentou acessar não foi encontrada.
     </div>
-    <a href="/" class="btn btn-primary btn-home">
+    <a href="/home" class="btn btn-primary btn-home">
         <i class="bi bi-house-door-fill me-1"></i> Voltar para a página inicial
     </a>
 </div>

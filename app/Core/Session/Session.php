@@ -76,4 +76,11 @@ class Session
         self::setKeys([]);
         session_destroy();
     }
+
+    public function removeKeys(array $keys): void
+    {
+        foreach ($keys as $key) {
+            unset($_SESSION[$key]);
+        }
+    }
 }
