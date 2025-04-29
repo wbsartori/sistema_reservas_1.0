@@ -7,10 +7,9 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Enums\StatusEnum;
 use App\Models\Vehicle;
-use App\Validator\StatusValidator;
 use Exception;
 
-class VehicleController
+class VehicleController extends BaseController
 {
     /**
      * @var Vehicle
@@ -19,6 +18,7 @@ class VehicleController
 
     public function __construct()
     {
+        parent::__construct();
         $this->vehicle = new Vehicle();
     }
 

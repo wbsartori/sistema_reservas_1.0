@@ -10,7 +10,7 @@ use App\Models\Room;
 use App\Validator\StatusValidator;
 use Exception;
 
-class RoomController
+class RoomController extends BaseController
 {
 
     /**
@@ -20,6 +20,7 @@ class RoomController
 
     public function __construct()
     {
+        parent::__construct();
         $this->room = new Room();
     }
 

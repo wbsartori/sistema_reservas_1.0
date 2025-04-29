@@ -55,20 +55,20 @@
                                 <form action="/reservations/approved" method="post" class="d-inline">
                                     <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
                                     <button class="btn btn-sm btn-outline-success" title="Aprovar">
-                                        <i class="bi bi-check2"></i>
+                                        Aprovar
                                     </button>
                                 </form>
                                 <form action="/reservations/canceled" method="post" class="d-inline">
                                     <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
                                     <button class="btn btn-sm btn-outline-danger" title="Cancelar">
-                                        <i class="bi bi-x-lg"></i>
+                                        Reprovar
                                     </button>
                                 </form>
                             <?php elseif ($item->reservas_status === \App\Enums\StatusEnum::APROVADO->value): ?>
                                 <form action="/reservations/canceled" method="post" class="d-inline">
                                     <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
                                     <button class="btn btn-sm btn-outline-danger" title="Cancelar">
-                                        <i class="bi bi-x-lg"></i>
+                                        Cancelar
                                     </button>
                                 </form>
                             <?php endif; ?>

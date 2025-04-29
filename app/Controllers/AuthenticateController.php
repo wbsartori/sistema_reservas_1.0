@@ -85,6 +85,5 @@ class AuthenticateController
     {
         Session::make()->destroy();
         View::make()->redirect();
-        return;
     }
 }

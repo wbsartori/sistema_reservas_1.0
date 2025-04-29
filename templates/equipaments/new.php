@@ -16,7 +16,7 @@
                 <?php include('_form.php'); ?>
 
                 <div class="d-flex justify-content-end gap-2 mt-4">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-outline-success">
                         <i class="bi bi-save me-1"></i> Salvar
                     </button>
                     <a href="/equipaments" class="btn btn-outline-danger">

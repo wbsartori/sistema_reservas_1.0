@@ -69,6 +69,7 @@ abstract class Model
             $statement = $this->connection->prepare($sql);
             $statement->bindValue(':id', intval($id));
             $statement->execute();
+            $this->connection->commit();
             return $statement->fetch();
         } catch (Throwable $exception) {
             $this->connection->rollBack();
@@ -96,6 +97,7 @@ abstract class Model
             $sql = 'select * from ' . $this->table . ' where ' . $newWhere;
             $statement = $this->connection->prepare($sql);
             $statement->execute($where);
+            $this->connection->commit();
             return $statement->fetch();
         } catch (Throwable $exception) {
             $this->connection->rollBack();

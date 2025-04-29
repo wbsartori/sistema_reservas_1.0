@@ -68,14 +68,14 @@
             <p>Cadastros</p>
             <?php if(isset($registers->criar_equipamento) && $registers->criar_equipamento === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="criar_equipamento" name="criar_equipamento" checked>
+                    <input class="form-check-input" type="checkbox" id="criar_equipamento" name="criar_equipamento" checked>
                     <label class="form-check-label" for="criar_equipamento">
                         Equipamentos
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="criar_equipamento" name="criar_equipamento">
+                    <input class="form-check-input" type="checkbox" id="criar_equipamento" name="criar_equipamento">
                     <label class="form-check-label" for="criar_equipamento">
                         Equipamentos
                     </label>
@@ -83,14 +83,14 @@
             <?php }?>
             <?php if(isset($registers->criar_sala) && $registers->criar_sala === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="criar_sala" name="criar_sala" checked>
+                    <input class="form-check-input" type="checkbox" id="criar_sala" name="criar_sala" checked>
                     <label class="form-check-label" for="criar_sala">
                         Salas
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="criar_sala" name="criar_sala">
+                    <input class="form-check-input" type="checkbox" id="criar_sala" name="criar_sala">
                     <label class="form-check-label" for="criar_sala">
                         Salas
                     </label>
@@ -98,14 +98,14 @@
             <?php }?>
             <?php if(isset($registers->criar_usuario) && $registers->criar_usuario === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="criar_usuario" name="criar_usuario" checked>
+                    <input class="form-check-input" type="checkbox" id="criar_usuario" name="criar_usuario" checked>
                     <label class="form-check-label" for="criar_usuario">
                         Usuários
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="criar_usuario" name="criar_usuario">
+                    <input class="form-check-input" type="checkbox" id="criar_usuario" name="criar_usuario">
                     <label class="form-check-label" for="criar_usuario">
                         Usuários
                     </label>
@@ -113,14 +113,14 @@
             <?php }?>
             <?php if(isset($registers->criar_veiculo) && $registers->criar_veiculo === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="criar_veiculo" name="criar_veiculo" checked>
+                    <input class="form-check-input" type="checkbox" id="criar_veiculo" name="criar_veiculo" checked>
                     <label class="form-check-label" for="criar_veiculo">
                         Salas
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="criar_veiculo" name="criar_veiculo">
+                    <input class="form-check-input" type="checkbox" id="criar_veiculo" name="criar_veiculo">
                     <label class="form-check-label" for="criar_veiculo">
                         Veículos
                     </label>
@@ -145,14 +145,14 @@
             <?php }?>
             <?php if(isset($registers->reservar_sala) && $registers->reservar_sala === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="reservar_sala" name="reservar_sala" checked>
+                    <input class="form-check-input" type="checkbox" id="reservar_sala" name="reservar_sala" checked>
                     <label class="form-check-label" for="reservar_sala">
                         Reservar Salas
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="reservar_sala" name="reservar_sala">
+                    <input class="form-check-input" type="checkbox" id="reservar_sala" name="reservar_sala">
                     <label class="form-check-label" for="reservar_sala">
                         Reservar Sala
                     </label>
@@ -160,14 +160,14 @@
             <?php }?>
             <?php if(isset($registers->reservar_veiculo) && $registers->reservar_veiculo === 'S') { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="S" id="reservar_veiculo" name="reservar_veiculo" checked>
+                    <input class="form-check-input" type="checkbox" id="reservar_veiculo" name="reservar_veiculo" checked>
                     <label class="form-check-label" for="reservar_veiculo">
                         Reservar Salas
                     </label>
                 </div>
             <?php } else { ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="N" id="reservar_veiculo" name="reservar_veiculo">
+                    <input class="form-check-input" type="checkbox" id="reservar_veiculo" name="reservar_veiculo">
                     <label class="form-check-label" for="reservar_veiculo">
                         Reservar Veículos
                     </label>

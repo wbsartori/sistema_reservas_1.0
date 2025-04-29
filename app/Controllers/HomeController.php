@@ -8,12 +8,13 @@ use App\Core\Session\Session;
 use App\Core\View;
 use App\Models\Reservation;
 
-class HomeController
+class HomeController extends BaseController
 {
     private Reservation $reservation;
 
     public function __construct()
     {
+        parent::__construct();
         $this->reservation = new Reservation();
     }
 

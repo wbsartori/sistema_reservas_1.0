@@ -8,7 +8,7 @@ use App\Core\Session\Session;
 use App\Providers\SystemProvider;
 use Pimple\Container;
 
-Session::make()->init();
+Session::make()->startSession();
 Env::make();
 $provider = new SystemProvider();
 $provider->register(new Container());

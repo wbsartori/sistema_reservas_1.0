@@ -7,10 +7,9 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Enums\StatusEnum;
 use App\Models\Equipament;
-use App\Validator\StatusValidator;
 use Exception;
 
-class EquipamentController
+class EquipamentController extends BaseController
 {
 
     /**
@@ -20,6 +19,7 @@ class EquipamentController
 
     public function __construct()
     {
+        parent::__construct();
         $this->equipament = new Equipament();
     }
 

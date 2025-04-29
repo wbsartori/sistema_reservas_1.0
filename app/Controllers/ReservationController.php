@@ -13,7 +13,7 @@ use App\Models\Room;
 use App\Models\Vehicle;
 use Exception;
 
-class ReservationController
+class ReservationController extends BaseController
 {
     /**
      * @var Reservation
@@ -25,6 +25,7 @@ class ReservationController
 
     public function __construct()
     {
+        parent::__construct();
         $this->reservation = new Reservation();
         $this->equipament = new Equipament();
         $this->room = new Room();
