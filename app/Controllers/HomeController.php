@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Core\Session\Session;
 use App\Core\View;
 use App\Models\Reservation;
+use App\Validator\ProfileStatus;
 
 class HomeController extends BaseController
 {
@@ -24,6 +25,11 @@ class HomeController extends BaseController
      */
     public function index(): void
     {
+        $where = 'WHERE reservas.usuario_id = ' . Session::getSession('users')['users']['id'];
+        if(Session::getSession("users")['users']['perfil'] === ProfileStatus::ADMINISTRADOR->value) {
+            $where = '';
+        }
+
         $registers = $this->reservation->query('
             SELECT
                 reservas.id as reservas_id,
@@ -40,7 +46,7 @@ class HomeController extends BaseController
                 usuarios.perfil as usuarios_perfil
             FROM reservas
                      LEFT JOIN usuarios ON usuarios.id = reservas.usuario_id
-            WHERE reservas.usuario_id = ' . Session::make()->getValue("users")['id'] . '
+            '. $where . '
         ');
         View::make()->template('home/index', $registers);
     }

@@ -6,10 +6,18 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="fw-bold">Reservas</h4>
-        <a href="/reservations/create" class="btn btn-primary">
-            <i class="bi bi-plus-lg me-1"></i> Nova Reserva
-        </a>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownReserva" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-plus-lg me-1"></i> Nova Reserva
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownReserva">
+                <li><a class="dropdown-item" href="/reservations/room">Salas</a></li>
+                <li><a class="dropdown-item" href="/reservations/equipament">Equipamentos</a></li>
+                <li><a class="dropdown-item" href="/reservations/vehicle">Veículos</a></li>
+            </ul>
+        </div>
     </div>
+
 
     <div class="table-responsive">
         <table class="table align-middle">
@@ -21,7 +29,7 @@
                 <th>Data</th>
                 <th>Horário</th>
                 <th class="text-center">Status</th>
-                <th class="text-end">Ações</th>
+                <th class="text-center">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -31,8 +39,8 @@
                     <td><?= $item->reservas_descricao ?? '' ?></td>
                     <td>
                         <?php
-                        if (isset($item->tipo)) {
-                            echo match($item->tipo) {
+                        if (isset($item->reservas_tipo)) {
+                            echo match($item->reservas_tipo) {
                                 'room' => 'Sala',
                                 'equipament' => 'Equipamento',
                                 'vehicle' => 'Veículo',
@@ -48,9 +56,9 @@
                                 <?= ucfirst($item->reservas_status) ?>
                             </span>
                     </td>
-                    <td class="text-end">
+                    <td class="text-center">
                         <!-- Aprovar / Cancelar -->
-                        <?php if (isset($item->usuarios_perfil) && $item->usuarios_perfil === \App\Validator\ProfileStatus::ADMINISTRADOR->value): ?>
+                        <?php if (isset(\App\Core\Session\Session::getSession()['users']['perfil']) && \App\Core\Session\Session::getSession()['users']['perfil'] === \App\Validator\ProfileStatus::ADMINISTRADOR->value): ?>
                             <?php if ($item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value): ?>
                                 <form action="/reservations/approved" method="post" class="d-inline">
                                     <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
