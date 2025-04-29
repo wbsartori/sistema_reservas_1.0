@@ -68,6 +68,7 @@ class AuthenticateController
             ]);
             $registers = (new Reservation())->currentReservationsByUser(Session::make()->getValue("users")['id']);
             View::make()->redirect('/home', $registers);
+            return;
         }
 
         View::make()->redirect('/', [
