@@ -1,4 +1,4 @@
--- CRIA��O DO BANCO
+-- BANCO DE DADOS
 CREATE DATABASE IF NOT EXISTS reservas;
 USE reservas;
 

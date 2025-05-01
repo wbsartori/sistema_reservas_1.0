@@ -1,131 +1,97 @@
-/*CREATE TABLES*/
+-- BANCO DE DADOS
+CREATE DATABASE IF NOT EXISTS reservas;
+USE reservas;
 
-create table equipamentos
-(
-    id                        integer
-        primary key autoincrement,
-    data_aquisicao            text,
-    nota_compra               text,
-    numero_patrimonio         text,
-    descricao                 text,
-    equipamento_tipo          text,
-    equipamento_marca         text,
-    modelo                    text,
-    prazo_garantia_fabricante text,
-    prazo_garantia_loja       text,
-    numero_serie              text,
-    status                    text,
-    observacoes               text,
-    criado_em                 text DEFAULT current_timestamp,
-    alterado_em               text DEFAULT current_timestamp
+-- TABELA: equipamentos
+CREATE TABLE IF NOT EXISTS equipamentos (
+                                            id INT AUTO_INCREMENT PRIMARY KEY,
+                                            data_aquisicao            VARCHAR(255),
+                                            nota_compra               VARCHAR(255),
+                                            numero_patrimonio         VARCHAR(255),
+                                            descricao                 VARCHAR(255),
+                                            equipamento_tipo          VARCHAR(255),
+                                            equipamento_marca         VARCHAR(255),
+                                            modelo                    VARCHAR(255),
+                                            prazo_garantia_fabricante VARCHAR(255),
+                                            prazo_garantia_loja       VARCHAR(255),
+                                            numero_serie              VARCHAR(255),
+                                            status                    VARCHAR(255),
+                                            observacoes               VARCHAR(255),
+                                            criado_em                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                            alterado_em               TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table reservas
-(
-    id             integer
-        primary key autoincrement,
-    descricao      text,
-    tipo           text,
-    usuario_id     text,
-    equipamento_id text,
-    sala_id        text,
-    data           text,
-    horario        text,
-    observacoes    text,
-    status         text,
-    criado_em      text DEFAULT current_timestamp,
-    alterado_em    text DEFAULT current_timestamp
+-- TABELA: reservas
+CREATE TABLE IF NOT EXISTS reservas (
+                                        id INT AUTO_INCREMENT PRIMARY KEY,
+                                        descricao      VARCHAR(255),
+                                        tipo           VARCHAR(255),
+                                        usuario_id     INT,
+                                        equipamento_id INT,
+                                        sala_id        INT,
+                                        veiculo_id     INT,
+                                        data           VARCHAR(255),
+                                        horario        VARCHAR(255),
+                                        observacoes    VARCHAR(255),
+                                        status         VARCHAR(255),
+                                        criado_em      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                        alterado_em    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table salas
-(
-    id          integer
-        primary key autoincrement,
-    descricao   text,
-    capacidade  text,
-    status      text,
-    criado_em   text DEFAULT current_timestamp,
-    alterado_em text DEFAULT current_timestamp
+-- TABELA: salas
+CREATE TABLE IF NOT EXISTS salas (
+                                     id INT AUTO_INCREMENT PRIMARY KEY,
+                                     descricao   VARCHAR(255),
+                                     capacidade  VARCHAR(255),
+                                     status      VARCHAR(255),
+                                     criado_em   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                     alterado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table usuarios
-(
-    id                   integer
-        primary key autoincrement,
-    nome_completo        text,
-    usuario              text,
-    senha                text,
-    contato              text,
-    email                text,
-    perfil               text,
-    criar_equipamento    text,
-    criar_sala           text,
-    criar_veiculo        text,
-    criar_usuario        text,
-    reservar_equipamento text,
-    reservar_sala        text,
-    reservar_veiculo     text,
-    status               text,
-    criado_em            text DEFAULT current_timestamp,
-    alterado_em          text DEFAULT current_timestamp
+-- TABELA: usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
+                                        id                   INT AUTO_INCREMENT PRIMARY KEY,
+                                        nome_completo        VARCHAR(255),
+                                        usuario              VARCHAR(255),
+                                        senha                VARCHAR(255),
+                                        contato              VARCHAR(255),
+                                        email                VARCHAR(255),
+                                        perfil               VARCHAR(255),
+                                        criar_equipamento    VARCHAR(1),
+                                        criar_sala           VARCHAR(1),
+                                        criar_veiculo        VARCHAR(1),
+                                        criar_usuario        VARCHAR(1),
+                                        reservar_equipamento VARCHAR(1),
+                                        reservar_sala        VARCHAR(1),
+                                        reservar_veiculo     VARCHAR(1),
+                                        status               VARCHAR(255),
+                                        criado_em            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                        alterado_em          TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table if not exists salas
-(
-    id          integer primary key autoincrement,
-    descricao   text,
-    capacidade  text,
-    status      text,
-    criado_em   text DEFAULT current_timestamp,
-    alterado_em text DEFAULT current_timestamp
+-- TABELA: veiculos
+CREATE TABLE IF NOT EXISTS veiculos (
+                                        id INT AUTO_INCREMENT PRIMARY KEY,
+                                        descricao           VARCHAR(255),
+                                        placa               VARCHAR(255),
+                                        ano_modelo          VARCHAR(255),
+                                        renavam             VARCHAR(255),
+                                        ano_fabricacao      VARCHAR(255),
+                                        quilometragem_atual VARCHAR(255),
+                                        chassi              VARCHAR(255),
+                                        numero_motor        VARCHAR(255),
+                                        observacoes         VARCHAR(255),
+                                        veiculo_tipo        VARCHAR(255),
+                                        veiculo_combustivel VARCHAR(255),
+                                        veiculo_cor         VARCHAR(255),
+                                        veiculo_marca       VARCHAR(255),
+                                        veiculo_modelo      VARCHAR(255),
+                                        status              VARCHAR(255),
+                                        criado_em           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                        alterado_em         TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table veiculos
-(
-    id                  integer
-        primary key autoincrement,
-    descricao           text,
-    placa               text,
-    ano_modelo          text,
-    renavam             text,
-    ano_fabricacao      text,
-    quilometragem_atual text,
-    chassi              text,
-    numero_motor        text,
-    observacoes         text,
-    veiculo_tipo        text,
-    veiculo_combustivel text,
-    veiculo_cor         text,
-    veiculo_marca       text,
-    veiculo_modelo      text,
-    status              text,
-    criado_em           text DEFAULT current_timestamp,
-    alterado_em         text DEFAULT current_timestamp
-);
-
-create table if not exists reservas
-(
-    id             integer primary key autoincrement,
-    descricao      text,
-    tipo           text,
-    usuario_id     text null,
-    equipamento_id text null,
-    sala_id        text null,
-    veiculo_id     text null,
-    data           text,
-    horario        text,
-    observacoes    text,
-    status         text,
-    criado_em      text DEFAULT current_timestamp,
-    alterado_em    text DEFAULT current_timestamp
-);
-
-INSERT INTO usuarios (id, nome_completo, usuario, senha, contato, email, perfil, criar_equipamento, criar_sala,
-                      criar_veiculo, criar_usuario, reservar_equipamento, reservar_sala, reservar_veiculo, status,
-                      criado_em, alterado_em)
-VALUES (1, 'Administrador', 'admin', 'admin', '49999999999', 'admin@reservas.com.br', 'administrador',
-        'S', 'S', 'S', 'S', 'S', 'S', 'S', 'ativo', current_timestamp, current_timestamp);
-
+-- DADOS INICIAIS
 
 INSERT INTO equipamentos (
     data_aquisicao,
@@ -157,16 +123,16 @@ INSERT INTO salas (
     capacidade,
     status
 ) VALUES
-      ('Sala de Reunião 1', '10', 'disponível'),
-      ('Sala de Treinamento', '30', 'disponível'),
-      ('Auditório Principal', '100', 'ocupada'),
-      ('Sala de Entrevistas', '5', 'disponível'),
-      ('Laboratório de Informática', '25', 'manutenção'),
-      ('Sala de Conferência 2', '15', 'disponível'),
-      ('Sala Multiuso', '20', 'ocupada'),
-      ('Sala de Reunião 2', '8', 'disponível'),
-      ('Estúdio de Gravação', '3', 'reservada'),
-      ('Sala Técnica', '6', 'disponível');
+      ('Sala de Reunião 1', '10', 'ativo'),
+      ('Sala de Treinamento', '30', 'ativo'),
+      ('Auditório Principal', '100', 'inativo'),
+      ('Sala de Entrevistas', '5', 'ativo'),
+      ('Laboratório de Informática', '25', 'inativo'),
+      ('Sala de Conferência 2', '15', 'ativo'),
+      ('Sala Multiuso', '20', 'inativo'),
+      ('Sala de Reunião 2', '8', 'ativo'),
+      ('Estúdio de Gravação', '3', 'inativo'),
+      ('Sala Técnica', '6', 'ativo');
 
 INSERT INTO veiculos (
     descricao,
@@ -187,7 +153,7 @@ INSERT INTO veiculos (
 ) VALUES
       ('Veículo de serviço 1', 'ABC1D23', '2020', '12345678901', '2019', '45000', '9BWZZZ377VT004251', 'MTR12345', 'Em bom estado', 'utilitário', 'flex', 'branco', 'Fiat', 'Strada', 'ativo'),
       ('Veículo de transporte 2', 'DEF2G34', '2021', '22345678902', '2020', '52000', '9BWZZZ377VT004252', 'MTR23456', 'Última revisão em jan/2024', 'passeio', 'gasolina', 'preto', 'Volkswagen', 'Gol', 'ativo'),
-      ('Veículo de apoio 3', 'GHI3J45', '2018', '32345678903', '2017', '89000', '9BWZZZ377VT004253', 'MTR34567', 'Necessita alinhamento', 'utilitário', 'diesel', 'prata', 'Toyota', 'Hilux', 'manutenção'),
+      ('Veículo de apoio 3', 'GHI3J45', '2018', '32345678903', '2017', '89000', '9BWZZZ377VT004253', 'MTR34567', 'Necessita alinhamento', 'utilitário', 'diesel', 'prata', 'Toyota', 'Hilux', 'inativo'),
       ('Veículo executivo', 'JKL4M56', '2022', '42345678904', '2022', '12000', '9BWZZZ377VT004254', 'MTR45678', 'Reservado para diretoria', 'passeio', 'flex', 'azul', 'Honda', 'Civic', 'ativo'),
       ('Van escolar', 'MNO5P67', '2019', '52345678905', '2019', '65000', '9BWZZZ377VT004255', 'MTR56789', 'Uso escolar', 'van', 'diesel', 'amarelo', 'Renault', 'Master', 'ativo'),
       ('Caminhão leve', 'PQR6S78', '2017', '62345678906', '2016', '97000', '9BWZZZ377VT004256', 'MTR67890', 'Troca de pneus recente', 'caminhão', 'diesel', 'branco', 'Mercedes-Benz', 'Accelo', 'ativo'),
@@ -195,3 +161,26 @@ INSERT INTO veiculos (
       ('Carro de ronda', 'VWX8Y90', '2021', '82345678908', '2020', '41000', '9BWZZZ377VT004258', 'MTR89012', 'Uso da segurança', 'passeio', 'flex', 'preto', 'Ford', 'Ka', 'ativo'),
       ('Ambulância', 'YZA9B01', '2019', '92345678909', '2018', '78000', '9BWZZZ377VT004259', 'MTR90123', 'Equipamento completo', 'ambulância', 'diesel', 'branca', 'Fiat', 'Ducato', 'ativo'),
       ('Veículo desativado', 'BCD0E12', '2015', '02345678910', '2014', '150000', '9BWZZZ377VT004260', 'MTR01234', 'Aguardando baixa', 'passeio', 'flex', 'vermelho', 'Peugeot', '206', 'inativo');
+
+
+INSERT INTO usuarios (
+    nome_completo,
+    usuario,
+    senha,
+    contato,
+    email,
+    perfil,
+    criar_equipamento,
+    criar_sala,
+    criar_veiculo,
+    criar_usuario,
+    reservar_equipamento,
+    reservar_sala,
+    reservar_veiculo,
+    status
+) VALUES
+      ('Administrador', 'admin', 'admin123', '11999999999', 'admin@empresa.com', 'administrador', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'ativo'),
+      ('Maria Oliveira', 'maria.o', 'senha123', '11988887777', 'maria@empresa.com', 'usuario', 'N', 'N', 'N', 'N', 'S', 'S', 'N', 'ativo'),
+      ('Carlos Souza', 'carlos.s', 'senha123', '11977776666', 'carlos@empresa.com', 'usuario', 'N', 'N', 'N', 'N', 'S', 'N', 'S', 'ativo'),
+      ('Ana Lima', 'ana.l', 'senha123', '11966665555', 'ana@empresa.com', 'usuario', 'N', 'N', 'N', 'N', 'S', 'S', 'S', 'ativo'),
+      ('Pedro Martins', 'pedro.m', 'senha123', '11955554444', 'pedro@empresa.com', 'usuario', 'N', 'N', 'N', 'N', 'N', 'N', 'S', 'inativo');

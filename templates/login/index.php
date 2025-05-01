@@ -37,12 +37,12 @@
 
                 <form action="/login/authenticate" method="post">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required>
+                        <input type="text" class="form-control" value="admin" id="usuario" name="usuario" placeholder="Usuário" required>
                         <label for="usuario">Usuário</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
+                        <input type="password" class="form-control" value="admin123" id="senha" name="senha" placeholder="Senha" required>
                         <label for="senha">Senha</label>
                     </div>
 

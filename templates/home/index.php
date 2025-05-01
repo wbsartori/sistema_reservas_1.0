@@ -1,6 +1,7 @@
 <?php
 \App\Core\View::make()->load('layout/header');
-//\App\Core\View::make()->alertMessage();
+$perfil = \App\Core\Session\Session::getSession('users')['users']['perfil'] ?? '';
+$perm = \App\Core\Session\Session::getSession('users')['users']['permissao'] ?? '';
 ?>
 
 <div class="container py-5">
@@ -11,9 +12,15 @@
                 <i class="bi bi-plus-lg me-1"></i> Nova Reserva
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownReserva">
-                <li><a class="dropdown-item" href="/reservations/room">Salas</a></li>
-                <li><a class="dropdown-item" href="/reservations/equipament">Equipamentos</a></li>
-                <li><a class="dropdown-item" href="/reservations/vehicle">Veículos</a></li>
+                <?php if ($perfil === 'administrador' || $perm['reservar_sala'] === 'S') : ?>
+                    <li><a class="dropdown-item" href="/reservations/room">Salas</a></li>
+                <?php endif; ?>
+                <?php if ($perfil === 'administrador' || $perm['reservar_equipamento'] === 'S') : ?>
+                    <li><a class="dropdown-item" href="/reservations/equipament">Equipamentos</a></li>
+                <?php endif; ?>
+                <?php if ($perfil === 'administrador' || $perm['reservar_veiculo'] === 'S') : ?>
+                    <li><a class="dropdown-item" href="/reservations/vehicle">Veículos</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
@@ -29,7 +36,9 @@
                 <th>Data</th>
                 <th>Horário</th>
                 <th class="text-center">Status</th>
-                <th class="text-center">Ações</th>
+                <?php if ($perfil === 'administrador') : ?>
+                    <th class="text-center">Ações</th>
+                <?php endif; ?>
             </tr>
             </thead>
             <tbody>
@@ -56,32 +65,34 @@
                                 <?= ucfirst($item->reservas_status) ?>
                             </span>
                     </td>
-                    <td class="text-center">
-                        <!-- Aprovar / Cancelar -->
-                        <?php if (isset(\App\Core\Session\Session::getSession()['users']['perfil']) && \App\Core\Session\Session::getSession()['users']['perfil'] === \App\Validator\ProfileStatus::ADMINISTRADOR->value): ?>
-                            <?php if ($item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value): ?>
-                                <form action="/reservations/approved" method="post" class="d-inline">
-                                    <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
-                                    <button class="btn btn-sm btn-outline-success" title="Aprovar">
-                                        Aprovar
-                                    </button>
-                                </form>
-                                <form action="/reservations/canceled" method="post" class="d-inline">
-                                    <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
-                                    <button class="btn btn-sm btn-outline-danger" title="Cancelar">
-                                        Reprovar
-                                    </button>
-                                </form>
-                            <?php elseif ($item->reservas_status === \App\Enums\StatusEnum::APROVADO->value): ?>
-                                <form action="/reservations/canceled" method="post" class="d-inline">
-                                    <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
-                                    <button class="btn btn-sm btn-outline-danger" title="Cancelar">
-                                        Cancelar
-                                    </button>
-                                </form>
+                    <?php if ($perfil === 'administrador') : ?>
+                        <td class="text-center">
+                            <!-- Aprovar / Cancelar -->
+                            <?php if (isset(\App\Core\Session\Session::getSession()['users']['perfil']) && \App\Core\Session\Session::getSession()['users']['perfil'] === \App\Validator\ProfileStatus::ADMINISTRADOR->value): ?>
+                                <?php if ($item->reservas_status === \App\Enums\StatusEnum::AGUARDANDO->value): ?>
+                                    <form action="/reservations/approved" method="post" class="d-inline">
+                                        <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
+                                        <button class="btn btn-sm btn-outline-success" title="Aprovar">
+                                            Aprovar
+                                        </button>
+                                    </form>
+                                    <form action="/reservations/canceled" method="post" class="d-inline">
+                                        <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
+                                        <button class="btn btn-sm btn-outline-danger" title="Cancelar">
+                                            Reprovar
+                                        </button>
+                                    </form>
+                                <?php elseif ($item->reservas_status === \App\Enums\StatusEnum::APROVADO->value): ?>
+                                    <form action="/reservations/canceled" method="post" class="d-inline">
+                                        <input type="hidden" name="_id" value="<?= $item->reservas_id ?>">
+                                        <button class="btn btn-sm btn-outline-danger" title="Cancelar">
+                                            Cancelar
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
-                    </td>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
             <?php if (empty($registers)): ?>
