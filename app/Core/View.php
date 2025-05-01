@@ -75,35 +75,36 @@ class View
      */
     public function alertMessage(): void
     {
-//        if (self::$session->getValue('status') !== null && self::$session->getValue('status') === Constants::ERROR_STATUS) {
-//            echo '<div class="alert alert-danger mt-3" id="danger-alert" role="alert">';
-//            echo self::$session->getValue('message');
-//            echo '</div>';
-//            echo "<script>";
-//            echo "document.addEventListener('DOMContentLoaded', function() {";
-//            echo "setTimeout(function() {";
-//            echo "var alertDiv = document.getElementById('danger-alert');";
-//            echo "if (alertDiv) {";
-//            echo "alertDiv.style.display = 'none';";
-//            echo "}";
-//            echo "}, 3000); ";
-//            echo "});";
-//            echo "</script>";
-//        } else if (self::$session->getValue('status') !== null && self::$session->getValue('status') === Constants::SUCCESS_STATUS) {
-//            echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
-//            echo self::$session->getValue('message');
-//            echo '</div>';
-//            echo "<script>";
-//            echo "document.addEventListener('DOMContentLoaded', function() {";
-//            echo "setTimeout(function() {";
-//            echo "var alertDiv = document.getElementById('success-alert');";
-//            echo "if (alertDiv) {";
-//            echo "alertDiv.style.display = 'none';";
-//            echo "}";
-//            echo "}, 3000); ";
-//            echo "});";
-//            echo "</script>";
-//        }
-//        self::$session->removeKeys(['status', 'message']);
+        if (isset(self::$session['status']) && self::$session['status'] === Constants::ERROR_STATUS) {
+            echo '<div class="alert alert-danger mt-3" id="danger-alert" role="alert">';
+            echo self::$session['message'];
+            echo '</div>';
+            echo "<script>";
+            echo "document.addEventListener('DOMContentLoaded', function() {";
+            echo "setTimeout(function() {";
+            echo "var alertDiv = document.getElementById('danger-alert');";
+            echo "if (alertDiv) {";
+            echo "alertDiv.style.display = 'none';";
+            echo "}";
+            echo "}, 3000); ";
+            echo "});";
+            echo "</script>";
+        }
+        if (isset(self::$session['status']) && self::$session['status'] === Constants::SUCCESS_STATUS) {
+            echo '<div class="alert alert-success mt-3" id="success-alert" role="alert">';
+            echo self::$session['message'];
+            echo '</div>';
+            echo "<script>";
+            echo "document.addEventListener('DOMContentLoaded', function() {";
+            echo "setTimeout(function() {";
+            echo "var alertDiv = document.getElementById('success-alert');";
+            echo "if (alertDiv) {";
+            echo "alertDiv.style.display = 'none';";
+            echo "}";
+            echo "}, 3000); ";
+            echo "});";
+            echo "</script>";
+        }
+        Session::removeKeys(['status', 'message']);
     }
 }
