@@ -48,8 +48,8 @@
                     </a>
                 </li>
 
-                <?php $perfil = \App\Core\Session\Session::make()->getValue('users')['perfil']; ?>
-                <?php $perm = \App\Core\Session\Session::make()->getValue('users')['permissao']; ?>
+                <?php $perfil = \App\Core\Session\Session::getSession('users')['users']['perfil'] ?? ''; ?>
+                <?php $perm = \App\Core\Session\Session::getSession('users')['users']['permissao'] ?? ''; ?>
 
                 <?php if ($perfil === 'administrador') : ?>
                     <li class="nav-item dropdown">
@@ -95,7 +95,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-person-circle"></i>
-                        <?= \App\Core\Session\Session::make()->getValue('users')['nome_completo'] ?? '' ?>
+                        <?= \App\Core\Session\Session::getSession('users')['users']['nome_completo'] ?? '' ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="/login/logout">Sair</a></li>

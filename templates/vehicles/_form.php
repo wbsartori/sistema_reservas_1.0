@@ -96,8 +96,9 @@
                 <?php } ?>
                 <option value="">---</option>
                 <option value="alcool">Álcool</option>
-                <option value="gasolina">Gasolina</option>
                 <option value="diesel">Diesel</option>
+                <option value="gasolina">Gasolina</option>
+                <option value="flex">flex</option>
             </select>
         </div>
     </div>

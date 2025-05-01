@@ -25,8 +25,10 @@ class HomeController extends BaseController
      */
     public function index(): void
     {
-        $where = 'WHERE reservas.usuario_id = ' . Session::getSession('users')['users']['id'];
-        if(Session::getSession("users")['users']['perfil'] === ProfileStatus::ADMINISTRADOR->value) {
+        $id = isset(Session::getSession('users')['users']['id']) ? Session::getSession('users')['users']['id'] : '';
+        $perfil = isset(Session::getSession('users')['users']['perfil']) ? Session::getSession('users')['users']['perfil'] : '';
+        $where = 'WHERE reservas.usuario_id = ' . $id;
+        if($perfil === ProfileStatus::ADMINISTRADOR->value) {
             $where = '';
         }
 

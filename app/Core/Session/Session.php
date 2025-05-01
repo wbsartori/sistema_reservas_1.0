@@ -62,7 +62,7 @@ class Session
      * @param array|null $sessionData
      * @return void
      */
-    public function setKeys(array $sessionData = null): void
+    public static function setKeys(array $sessionData = null): void
     {
         if ($sessionData !== null || $sessionData !== []) {
             foreach ($sessionData as $key => $value) {
@@ -123,7 +123,7 @@ class Session
         header('location:' . '/');
     }
 
-    public function removeKeys(array $keys): void
+    public static function removeKeys(array $keys): void
     {
         foreach ($keys as $key) {
             unset($_SESSION[$key]);

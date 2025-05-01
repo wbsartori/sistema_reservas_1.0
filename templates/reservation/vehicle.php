@@ -28,10 +28,10 @@ View::make()->load('layout/header');
                                     <label for="usuario_id">ID usuário:</label>
                                     <input type="text" class="form-control" maxlength="50" id="usuario_id"
                                            name="usuario_id"
-                                           value="<?= Session::make()->getValue('users')['id'] ?? '' ?>" disabled>
+                                           value="<?= Session::getSession('users')['users']['id'] ?? '' ?>" disabled>
                                     <input type="hidden" class="form-control" maxlength="50" id="usuario_id"
                                            name="usuario_id"
-                                           value="<?= Session::make()->getValue('users')['id'] ?? '' ?>">
+                                           value="<?= Session::getSession('users')['users']['id'] ?? '' ?>">
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ View::make()->load('layout/header');
                                     <label for="nome_usuario">Usuário:</label>
                                     <input type="text" class="form-control" maxlength="50" id="nome_usuario"
                                            name="nome_usuario"
-                                           value="<?= Session::make()->getValue('users')['nome_completo'] ?? '' ?>"
+                                           value="<?= Session::getSession('users')['users']['nome_completo'] ?? '' ?>"
                                            disabled>
                                 </div>
                             </div>

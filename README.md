@@ -27,6 +27,7 @@
 - PHP 8.3
 - Composer
 - SQLite
+- MySql
 - Docker para ambiente de desenvolvimento
 
 ---
@@ -105,6 +106,14 @@ Acessar o container php:
   docker exec -it php-fpm bash
 ```
 
+
+Acessar o container mariadb:
+
+```bash
+  docker exec -it mariadb bash
+```
+
+
 Em sistemas Windows o comando bash pode não funcionar, desta forma altere para sh:
 ```bash
   #Exemplo
@@ -125,13 +134,3 @@ Após fazer login será direcionado para pagina home do projeto:
 ![index_image](./public/assets/images/home.png)
 
 ---
-
-
-### Para obter a versão 2.0 ou solicitar algum serviço:
-
-<strong>Acesse a pagina</strong> https://wbsartori.com.br
-
-<strong>Mande um e-mail</strong> wbsartori@gmail.com
-
-
-----

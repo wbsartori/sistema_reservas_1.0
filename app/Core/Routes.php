@@ -25,7 +25,6 @@ class Routes
         if(!class_exists($routes[$uri]['controller'])) {
             throw new Exception('Controller not found!');
         }
-        Session::init();
         $controller = new $routes[$uri]['controller'];
         $method = $routes[$uri]['method'];
         return $controller->$method();

@@ -48,7 +48,8 @@ class AuthenticateController
             ]
         );
         if (is_object($userExists) && $userExists->status === StatusEnum::ATIVO->value) {
-            Session::make()->setKeys([
+            Session::init();
+            Session::setKeys([
                 'users' => [
                     'id' => $userExists->id,
                     'nome_completo' => $userExists->nome_completo,
@@ -66,7 +67,7 @@ class AuthenticateController
                     ],
                 ]
             ]);
-            $registers = (new Reservation())->currentReservationsByUser(Session::make()->getValue("users")['id']);
+            $registers = (new Reservation())->currentReservationsByUser(Session::getSession("users")['users']['id']);
             View::make()->redirect('/home', $registers);
             return;
         }
@@ -83,7 +84,7 @@ class AuthenticateController
      */
     public function logout(): void
     {
-        Session::make()->destroy();
+        Session::destroy();
         View::make()->redirect();
     }
 }
